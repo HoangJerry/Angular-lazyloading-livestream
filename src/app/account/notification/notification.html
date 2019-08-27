@@ -1,0 +1,21 @@
+<div class="svod-box notification-box">
+  <div class="row">
+    <div class="small-12 medium-12 column">
+      <div class="row">
+        <div class="small-12 medium-12 columns">
+          <h3>Email Notifications</h3>
+          <p class="notification-email">Email address: {{ user?.userEmail }}</p>
+        </div>
+      </div>
+      <div class="row notification">
+        <div class="small-12 medium-12 columns">
+          <p>By subscribing to our email newsletter, you will be opting to receive updates about new feature releases, special offers, updates, and more. </p>
+          <p>If you’re not interested in receiving this content, please uncheck the box below to unsubscribe.</p>
+        </div>
+        <div class="small-12 medium-12 columns">
+          <mcvod-checkbox [selected]="settings?.newsletter" (click)="onChangeNewsletter()"></mcvod-checkbox>Subscribe to newsletters
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

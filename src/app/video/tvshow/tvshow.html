@@ -1,0 +1,51 @@
+<div class="video-banner" [ngStyle]="{'background-image': 'url(' + tvShow?.featureImageLink + ')'}">
+  <div class="row video-banner-content">
+    <div class="small-12 medium-4 columns text-center video-image">
+      <img [src]="tvShow?.thumbnailLink" *ngIf="tvShow?.thumbnailLink">
+    </div>
+    <div class="small-12 medium-8 columns text-left video-header">
+      <h1 class="text-uppercase">{{ tvShow?.showTitle }}</h1>
+      <div *ngIf="episodes?.length > 0">{{ episodes?.length }}
+        <span *ngIf="episodes?.length == 1">Episode</span>
+        <span *ngIf="episodes?.length > 1">Episodes</span>
+      </div>
+      <br>
+      <p>{{ tvShow?.description }}</p>
+      <p>Cast</p>
+      <p>Creator</p>
+    </div>
+  </div>
+</div>
+
+<div class="svod-content">
+  <div class="row">
+    <div class="small-12 columns">
+      <p>
+        <a (click)="goBack()" class="back-link"><i class="fas fa-long-arrow-left"></i> back</a>
+      </p>
+      <p>
+        <select class="season-select" (change)="onSeasonChange($event.target.value)">
+          <option *ngFor="let season of tvShow?.seasons" value="{{ season.seasonID }}">Season {{ season.seasonNumber}}</option>
+        </select>
+      </p>
+    </div>
+  </div>
+
+  <div class="video-list" *ngIf="selectedSeason">
+    <div class="row">
+      <div class="small-12 columns">
+        <div *ngFor="let video of episodes; let i = index; let last = last" [class.end]="last" class="video-item responsive-video-item tvshow-item hoverable" (click)="gotoVideo(video.videoID)">
+          <div class="responsive-video-item-header">
+            <img [src]="video.thumbnailLink">
+            <div class="hover-item">
+              <div class="play-button"></div>
+            </div>
+          </div>
+          <div class="responsive-video-item-footer">
+            <p>{{ video.episodeNumber }}. {{ video.title | mcvodTruncate : 25 }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

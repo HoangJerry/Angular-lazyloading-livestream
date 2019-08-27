@@ -1,0 +1,311 @@
+<header
+  class="bg-gray-900 sm:flex sm:items-center"
+  [class.authenticated]="authService.isLoggedIn()"
+>
+  <div class="flex justify-between px-4 py-4">
+    <div>
+      <a class="h-8 w-auto" routerLink="/browse">
+        <img src="{{ logoWhite }}" width="32px" />
+      </a>
+    </div>
+
+    <div class="flex">
+      <button
+        (click)="toggleMobileMenu()"
+        type="button"
+        class="px-2 text-gray-500 hover:text-white sm:hidden"
+      >
+        <svg
+          class="h-6 w-6 fill-current"
+          width="24"
+          height="24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            *ngIf="!isMobileMenuActive"
+            d="M3 12h18M3 6h18M3 18h18"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            *ngIf="isMobileMenuActive"
+            d="M18 6.5l-12 12M6 6.5l12 12"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- Main nav -->
+  <nav
+    class="sm:flex sm:flex-1 sm:items-center "
+    [ngClass]="{ hidden: !isMobileMenuActive, block: isMobileMenuActive }"
+  >
+    <div class="px-2 py-3  sm:flex sm:flex-grow-0  sm:py-0">
+      <a
+        [routerLink]="['/browse']"
+        routerLinkActive="focus:bg-gray-800 focus:text-gray-300"
+        class="block px-3 py-1 rounded font-semibold text-white hover:bg-gray-800 hover:text-gray-300"
+        >Browse</a
+      >
+
+      <a
+        [routerLink]="['/movies']"
+        routerLinkActive="focus:bg-gray-800 focus:text-gray-300"
+        class="mt-3 block px-3 py-1 rounded font-semibold text-white hover:bg-gray-800 hover:text-gray-300  sm:mt-0"
+        >Movies</a
+      >
+      <a
+        [routerLink]="['/shows']"
+        routerLinkActive="focus:bg-gray-800 focus:text-gray-300"
+        class="mt-3 block px-3 py-1 rounded font-semibold text-white hover:bg-gray-800 hover:text-gray-300 sm:mt-0"
+        >Shows</a
+      >
+      <a
+        [routerLink]="['/kids']"
+        routerLinkActive="focus:bg-gray-800 focus:text-gray-300"
+        class="mt-3 block px-3 py-1 rounded font-semibold text-white hover:bg-gray-800 hover:text-gray-300 sm:mt-0"
+        >Kids</a
+      >
+      <a
+        [routerLink]="['/christian-living']"
+        routerLinkActive="focus:bg-gray-800 focus:text-gray-300"
+        class="block px-3 py-1 rounded font-semibold text-white hover:bg-gray-800 hover:text-gray-300 sm:mt-0"
+        >Christian Living</a
+      >
+      <a
+        (click)="gotoVideo()"
+        routerLinkActive="focus:bg-gray-800 focus:text-gray-300"
+        class="block px-3 py-1 rounded-full font-semibold text-white bg-red-600 hover:bg-red-500 hover:text-white sm:mt-0"
+        >Live</a
+      >
+    </div>
+    <div class="sm:flex-grow"></div>
+
+    <!-- Search -->
+    <div
+      class="px-4 border-gray-800 border-b pb-4
+      sm:border-b-0 sm:flex-grow-0 sm:pb-0 "
+    >
+      <div class="relative">
+        <form (submit)="gotoSearch()">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-2">
+            <svg
+              class="h-6 text-gray-400 focus:h-2 focus:text-gray-600"
+              width="25"
+              height="25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.572 19.5a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21.572 21.5l-4.35-4.35"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <input
+            #search
+            id="search"
+            type="search"
+            [(ngModel)]="query"
+            name="query"
+            [class.active]="isSearchActive"
+            class="mb-0 bg-gray-900 px-12 w-full border text-white rounded focus:text-gray-900 focus:bg-gray-100 focus:shadow-outline sm:animate-4s sm:focus:w-full"
+            placeholder="Search by keyword."
+          />
+        </form>
+      </div>
+    </div>
+    <!-- Admin -->
+    <div class=" relative px-5 py-5">
+      <div class="flex items-center sm:hidden">
+        <div
+          class="h-8 w-8 flex items-center text-gray-900 justify-center rounded-full bg-gray-600 mr-2"
+        >
+          <svg
+            width="24"
+            height="25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 21.5v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11.5a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <span class="font-semibold text-gray-200 sm:hidden">{{
+          authService.getLoggedUserEmail()
+        }}</span>
+      </div>
+      <button (click)="toggleDropdown()" type="button" class="hidden sm:block">
+        <div
+          class="h-8 w-8 flex items-center text-gray-900 justify-center rounded-full bg-gray-600"
+        >
+          <svg
+            width="24"
+            height="25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 21.5v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11.5a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+      </button>
+      <div [ngClass]="{ 'sm:block': dropdownOpen, 'sm:hidden': !dropdownOpen }">
+        <button
+          (click)="dropdownOpen = false"
+          type="button"
+          class="hidden sm:block sm:fixed sm:opacity-0 sm:inset-0 sm:w-full sm:h-full sm:z-20"
+        ></button>
+
+        <div
+          class="mt-5 sm:bg-white sm:rounded sm:absolute sm:right-0 sm:z-20 sm:w-48 sm:mt-3 sm:py-2 sm:shadow-xl sm:mr-4 "
+        >
+          <a
+            [routerLink]="['/my-account']"
+            class="block text-gray-400 hover:text-white sm:text-gray-800 sm:px-4 sm:py-2 sm:mt-0 sm:hover:bg-indigo-700"
+            >Account Settings</a
+          >
+          <a
+            href="{{ helpDesk }}"
+            target="_blank"
+            class="mt-4 block text-gray-400 hover:text-white sm:text-gray-800 sm:px-4 sm:py-2 sm:mt-0 sm:hover:bg-indigo-700"
+            >Support</a
+          >
+          <a
+            (click)="authService.logout()"
+            class="mt-4 block text-gray-400 hover:text-white sm:text-gray-800 sm:px-4 sm:py-2 sm:mt-0 sm:hover:bg-indigo-700"
+            >Sign out</a
+          >
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- <section class="bg-gray-800 px-4 py-3">
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-2">
+          <svg (click)="toggleSearch()" [ngClass]="{'hidden'}" class="h-6 h-6 text-gray-500" width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.572 19.5a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21.572 21.5l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <form (submit)="gotoSearch()">
+        <input class="bg-gray-900 h-12 px-12 w-full text-white rounded" type="search" #search id="search" [(ngModel)]="query" name="query" placeholder="Search by keywords, topic, name, etc..">
+      </div>
+    </section> -->
+</header>
+
+<!-- <div class="top-bar" [class.authenticated]="authService.isLoggedIn()">
+  <div class="row">
+    <div class="medium-12 columns">
+      <div class="svod-show-for-tablet-only">
+        <a (click)="activeSideMenu()" class="off-canvas-btn">
+          <i class="fas fa-bars" alt="Offcanvas" ></i>
+        </a>
+        <a class="mobile-logo" routerLink="/browse">
+          <img src="{{ logoWhite }}">
+        </a>
+        <div class="search-input tabet-search-input" *ngIf="authService.isLoggedIn()">
+          <form (submit)="gotoSearch()">
+            <i class="fas fa-search" (click)="toggleSearch()" [class.active]="isSearchActive"></i>
+            <input #search id="search" type="search" [(ngModel)]="query" name="query" [class.active]="isSearchActive">
+          </form>
+        </div>
+      </div>
+      <div class="svod-hide-for-tablet-only">
+        <div class="top-bar-left">
+          <ul class="menu dropdown" data-dropdown-menu *ngIf="!authService.isLoggedIn()">
+            <li class="menu-text,logo-image">
+              <a class="logo" routerLink="/browse">
+                <img src="{{ logoWhite }}" width="20px">
+              </a>
+            </li>
+            <li>
+              <a>Features</a>
+            </li>
+            <li>
+              <a>Ways To watch</a>
+            </li>
+            <li class="svod-li-dropdown">
+              <a href="#"><span>More Info</span> <i class="fas fa-caret-down"></i></a>
+              <ul class="menu vertical svod-dropdown">
+                <li><a>Info</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="menu" *ngIf="authService.isLoggedIn()">
+            <li class="menu-text, logo-image">
+            	<a class="logo" routerLink="/browse">
+                <img src="{{ logoWhite }}">
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/christian-living']" routerLinkActive="link-secondary">Christian Living</a>
+            </li>
+            <li>
+              <a [routerLink]="['/movies']" routerLinkActive="link-secondary">Movies</a>
+            </li>
+             <li>
+              <a [routerLink]="['/shows']" routerLinkActive="link-secondary">Shows</a>
+            </li>
+            <li>
+              <a [routerLink]="['/kids']" routerLinkActive="link-secondary">Kids</a>
+            </li>
+          </ul>
+        </div>
+        <div class="top-bar-right">
+          <ul class="menu" *ngIf="!authService.isLoggedIn()">
+            <li>
+            	<a [routerLink]="['/login']" class="svod-btn svod-btn-orange svod-btn-grey-text">Login</a>
+            </li>
+          </ul>
+          <ul class="dropdown menu" data-dropdown-menu *ngIf="authService.isLoggedIn()">
+            <li class="search-input">
+              <form (submit)="gotoSearch()">
+                <i class="fas fa-search" (click)="toggleSearch()" [class.active]="isSearchActive"></i>
+                <input #search id="search" type="search" [(ngModel)]="query" name="query" [class.active]="isSearchActive">
+              </form>
+            </li>
+            <li class="svod-li-dropdown">
+              <a (click)="activateDropdownMenu()"><i class="fas fa-user-circle"></i>
+                <i class="fas fa-caret-down"></i></a>
+              <ul id="user-dropdown" class="menu vertical svod-dropdown" [class.active]="isDropdownMenuActive">
+                <li>
+                  <i class="fas fa-user-circle"></i>
+                  <span>{{ authService.getLoggedUserEmail() }}</span>
+                </li>
+                <li><hr></li>
+                <li class="large-link"><a [routerLink]="['/my-account']">My Account</a></li>
+                <li class="large-link"><a href="{{ helpDesk }}" target="_blank">Help Desk</a></li>
+                <li><hr></li>
+                <li>
+                  <a class="svod-btn svod-btn-orange svod-btn-normal" (click)=authService.logout()>Logout</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

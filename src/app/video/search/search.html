@@ -1,0 +1,71 @@
+<div class="svod-content">
+  <div class="row">
+    <div class="small-12 large-8 large-push-2 column text-center">
+      <h1 class="text-uppercase">Search for: {{ query }}</h1>
+    </div>
+  </div>
+  <div class="video-list">
+    <div class="row">
+      <div class="small-12 columns">
+        <h3>Movies</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <div *ngFor="let video of videos; let i = index; let last = last" [class.end]="last" class="video-item responsive-video-item hoverable" (click)="gotoVideo(video.videoID)" [class.hide]="video.tvShow !== null">
+          <img [src]="video.thumbnailLink">
+          <div class="hover-item">
+            <h3>{{ video.title }}</h3>
+            <div class="play-button"></div>
+            <p><span>{{ video.maturityRating }}</span> <span>{{ video.videoLength }}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="video-list">
+    <div class="row">
+      <div class="small-12 columns">
+        <h3>TV Shows</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <div *ngFor="let video of tvshows; let i = index; let last = last" [class.end]="last" class="video-item responsive-video-item hoverable" (click)="gotoShow(video.TvShowID)">
+          <img [src]="video.thumbnailLink">
+          <div class="hover-item">
+            <h3>{{ video.showTitle }}</h3>
+            <div class="play-button"></div>
+            <p><span>{{ video.genre }}</span> <span></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="video-list">
+    <div class="row">
+      <div class="small-12 columns">
+        <h3>Topics</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <div *ngFor="let topic of topics; let i = index; let last = last" [class.end]="last" class="video-item responsive-video-item topic-item hoverable" (click)="gotoTopic(topic.id)">
+          <div class="responsive-video-item-header">
+            <img [src]="topic.thumbnailLink" *ngIf="topic.thumbnailLink">
+            <div class="hover-item text-uppercase text-center">
+              <div class="play-button"></div>
+            </div>
+          </div>
+          <div class="responsive-video-item-footer">
+            <h3>{{ topic.title | mcvodTruncate : 20 }}</h3>
+            <p>{{ topic.episodes?.length }}
+              <span *ngIf="topic.episodes?.length <= 1">episode</span>
+              <span *ngIf="topic.episodes?.length > 1">episodes</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

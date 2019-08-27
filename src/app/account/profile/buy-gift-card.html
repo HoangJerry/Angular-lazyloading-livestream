@@ -1,0 +1,25 @@
+<div class="svod-box" *ngIf="showBuyGiftcard">
+  <div class="row">
+    <div class="small-12 column">
+      <p>
+        <a (click)="goBack()" class="back-link"><i class="fa fa-long-arrow-left"></i> back</a>
+      </p>
+      <h3><i class="fa fa-gift"></i> Buy Gift Cards</h3>
+      <p>Buy a gift for friends or familly.</p>
+      <p>
+        <a (click)="openGiftcardForm()" class="border-rounded-button button-small">
+          3 Months
+          <span>Value of $23.97</span>
+        </a>
+        <a (click)="openGiftcardForm()" class="border-rounded-button button-small">
+          6 Months
+          <span>Value of $47.94</span>
+        </a>
+        <a (click)="openGiftcardForm()" class="border-rounded-button button-small">
+          Gift a Year of {{ appName }}
+          <span>Value of $95.88</span>
+        </a>
+      </p>
+    </div>
+  </div>
+</div>

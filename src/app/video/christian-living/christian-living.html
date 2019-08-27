@@ -1,0 +1,172 @@
+<!-- <mcvod-carousel
+      [noWrap]="false"
+      [noPause]="true"
+      [slides]="slides"
+    ></mcvod-carousel> -->
+<app-carousel
+  [noWrap]="false"
+  [noPause]="true"
+  [slides]="slides"
+></app-carousel>
+
+<div class="row svod-tab-container">
+  <div class="small-12 large-12 column text-center">
+    <button
+      [class.active]="topicView"
+      class="button svod-tab"
+      (click)="viewTopics()"
+    >
+      Topics
+    </button>
+    <button
+      [class.active]="showView"
+      class="button svod-tab"
+      (click)="viewShows()"
+    >
+      Shows
+    </button>
+  </div>
+</div>
+<div class="video-list all" *ngIf="topicView">
+  <div class="row">
+    <div class="small-12 column">
+      <div
+        *ngFor="let topic of topics; let i = index; let last = last"
+        [class.end]="last"
+        class="video-item responsive-video-item topic-item hoverable"
+        (click)="gotoTopic(topic.id)"
+      >
+        <div class="responsive-video-item-header">
+          <img [src]="topic.thumbnailLink" />
+          <div class="hover-item text-uppercase text-center">
+            <div class="play-button"></div>
+          </div>
+        </div>
+        <div class="responsive-video-item-footer">
+          <h3>{{ topic.title }}</h3>
+          <p>
+            {{ topic.episodes?.length }}
+            <span *ngIf="topic.episodes?.length <= 1">episode</span>
+            <span *ngIf="topic.episodes?.length > 1">episodes</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showView">
+  <div class="video-list">
+    <div class="row">
+      <div class="small-12 columns">
+        <div
+          *ngFor="let video of shows; let i = index; let last = last"
+          [class.end]="last"
+          class="video-item responsive-video-item hoverable"
+          (click)="gotoShow(video.TvShowID)"
+        >
+          <img [src]="video.thumbnailLink" />
+          <div class="hover-item">
+            <h3>{{ video.showTitle }}</h3>
+            <div class="play-button"></div>
+            <p>
+              <span>{{ video.genre }}</span> <span></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="video-list" *ngIf="popularTopics && !filtered">
+  <div class="row">
+    <div class="small-12 column">
+      <h3>Popular Topics</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <div
+        *ngFor="let topic of popularTopics; let i = index; let last = last"
+        [class.end]="last"
+        class="video-item responsive-video-item topic-item hoverable"
+        (click)="gotoTopic(topic.id)"
+      >
+        <div class="responsive-video-item-header">
+          <img [src]="topic.thumbnailLink" />
+          <div class="hover-item text-uppercase text-center">
+            <div class="play-button"></div>
+          </div>
+        </div>
+        <div class="responsive-video-item-footer">
+          <h3>{{ topic.title }}</h3>
+          <p>
+            {{ topic.episodes?.length }}
+            <span *ngIf="topic.episodes?.length <= 1">episode</span>
+            <span *ngIf="topic.episodes?.length > 1">episodes</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="video-list" *ngIf="popularTopicShows && !filtered">
+  <div class="row">
+    <div class="small-12 column">
+      <h3>Popular Shows</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <div
+        *ngFor="let video of popularTopicShows; let i = index; let last = last"
+        [class.end]="last"
+        class="video-item responsive-video-item hoverable"
+        (click)="gotoShow(video.TvShowID)"
+      >
+        <img [src]="video.thumbnailLink" />
+        <div class="hover-item">
+          <h3>{{ video.showTitle }}</h3>
+          <div class="play-button"></div>
+          <p>
+            <span>{{ video.genre }}</span> <span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="video-list" *ngIf="newTopics && !filtered">
+  <div class="row">
+    <div class="small-12 column">
+      <h3>Recent Topics</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <div
+        *ngFor="let topic of newTopics; let i = index; let last = last"
+        [class.end]="last"
+        class="video-item responsive-video-item topic-item hoverable"
+        (click)="gotoTopic(topic.id)"
+      >
+        <div class="responsive-video-item-header">
+          <img [src]="topic.thumbnailLink" />
+          <div class="hover-item text-uppercase text-center">
+            <div class="play-button"></div>
+          </div>
+        </div>
+        <div class="responsive-video-item-footer">
+          <h3>{{ topic.title }}</h3>
+          <p>
+            {{ topic.episodes?.length }}
+            <span *ngIf="topic.episodes?.length <= 1">episode</span>
+            <span *ngIf="topic.episodes?.length > 1">episodes</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

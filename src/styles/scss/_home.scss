@@ -1,0 +1,40 @@
+$banner-v2-top-padding: 33px;
+$banner-top-padding: 58px;
+$banner-heading-size: 36px;
+$banner-v2-heading-margin-bottom: 52px;
+$banner-heading-margin-bottom: 38px;
+$banner-paragraph-size: 16px;
+$banner-button-margin-bottom: 5.625rem;
+
+.banner {
+  padding-top: $banner-top-padding;
+  color: $corco-dark-purple;
+
+  h1 {
+    font-size: $banner-heading-size;
+    margin-bottom: $banner-heading-margin-bottom;
+    letter-spacing: 0.2px;
+    text-align: center;
+    color: $corco-dark-purple;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: $banner-paragraph-size;
+    margin-bottom: $banner-heading-margin-bottom;
+    letter-spacing: 0.09px;
+  }
+
+  .button {
+    margin-bottom: $banner-button-margin-bottom;
+  }
+
+  &.banner-v2 {
+    padding-top: $banner-v2-top-padding;
+
+    h1 {
+      font-weight: 700;
+      margin-bottom: $banner-v2-heading-margin-bottom;
+    }
+  }
+}

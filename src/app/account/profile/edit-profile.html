@@ -1,0 +1,38 @@
+<div class="reveal-overlay show" *ngIf="showEditProfile">
+  <div class="reveal show">
+    <div class="row">
+      <div class="small-12 large-10 large-push-1 column">
+        <h3 class="text-center">Update Account</h3>
+        <form [formGroup]="editProfileForm" (submit)="onSubmit()" class="deactivate-account-form svod-form">
+          <div class="row">
+            <div class="small-12 column">
+              <input type="text" placeholder="First Name" class="form-text" formControlName="firstName" [class.error]="formErrors.firstName" required>
+              <p class="svod-help-text error" *ngIf="formErrors.firstName">{{formErrors.firstName}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 column">
+              <input type="text" placeholder="Last Name" class="form-text" formControlName="lastName" [class.error]="formErrors.lastName" required>
+              <p class="svod-help-text error" *ngIf="formErrors.lastName">{{formErrors.lastName}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 column">
+              <input type="email" placeholder="Email" class="form-text" formControlName="userEmail" [class.error]="formErrors.userEmail || errorMessage" required mcvodValidateEmail>
+              <p class="svod-help-text error" *ngIf="formErrors.userEmail">{{formErrors.userEmail}}</p>
+              <p class="svod-help-text error" *ngIf="errorMessage">Email already exists.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 column">
+              <button type="submit" class="secondary button expanded form-submit-button text-uppercase">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <button class="close-button" type="button" (click)="closeEditProfileForm()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>

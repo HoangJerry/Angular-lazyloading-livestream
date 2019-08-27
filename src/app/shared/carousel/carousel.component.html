@@ -1,0 +1,29 @@
+<div (mouseenter)="pause()" (mouseleave)="play()" class="overflow-hidden mb-6 relative">
+    <div class="bg-gray-800">
+      <ul class="relative m-0 overflow-hidden list-none">
+        <li *ngFor="let slide of slides"   [ngClass]="{'block': slide.active === true, 'hidden': slide.active === false}">
+          <figure [ngStyle]="{'background-image': 'url(' +  slide.img  + ')'}" class="relative h-64 w-full bg-cover bg-center bg-no-repeat sm:h-104">
+            <div class="absolute flex inset-y-0 items-center left-0 pl-4 z-10">
+            <div class="w-3/4">
+              <p class="text-gray-100 font-thin text-base " >Featured</p>
+              <p class="mb-2 text-gray-100 font-bold text-5xl leading-none ">{{ slide.title }}</p>
+              <p>
+                <button  *ngIf="topic" (click)="gotoTopic(slide.videoID)" class="mr-2 bg-gray-800 text-white font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-gray-700"><i class="fas fa-play mr-2"></i>
+                    Play</button>
+                <button  *ngIf="!topic"(click)="gotoVideo(slide.videoID)" class="mr-2 bg-gray-800 text-white font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-gray-700"><i class="fas fa-play mr-2"></i>
+                    Play</button>
+              </p>
+            </div>
+          </div>
+          </figure>
+        </li>
+      </ul>
+    </div>
+    <nav  [hidden]="slides.length == 1">
+      <button  (click)="prev()" [hidden]="!slides.length"></button>
+  
+      <button *ngFor="let slide of slides" [class.block]="slide.active === true" (click)="select(slide)"></button>
+  
+      <button  (click)="next()" [hidden]="!slides.length"></button>
+    </nav>
+  </div>

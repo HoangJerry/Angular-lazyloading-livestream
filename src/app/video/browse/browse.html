@@ -1,0 +1,476 @@
+<app-carousel [noWrap]="false" [noPause]="true" [slides]="slides">
+</app-carousel>
+
+<div class="video-list" *ngIf="history">
+  <div class="row">
+    <div class="small-12 column">
+      <h3>Continue Watching</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <div
+        *ngFor="let video of history; let i = index; let last = last"
+        [class.end]="last"
+        class="video-item responsive-video-item hoverable one-row-item"
+        (click)="gotoVideo(video.videoID.videoID)"
+      >
+        <img
+          [src]="video.videoID.tvShow.thumbnailLink"
+          *ngIf="video.videoID.tvShow"
+        />
+        <img
+          [src]="video.videoID.thumbnailLink"
+          *ngIf="!video.videoID.tvShow"
+        />
+        <div class="hover-item">
+          <h3>{{ video.videoID.title }}</h3>
+          <div class="play-button"></div>
+          <p>
+            <span>{{ video.videoID.maturityRating }}</span>
+            <span>{{ video.videoID.videoLength }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="video-list" *ngIf="all == null || all == 'recent'">
+  <div class="row">
+    <div class="small-12 columns">
+      <h3>Recently Added</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <div
+        *ngFor="let video of newVideos; let i = index; let last = last"
+        [class.end]="last"
+        class="video-item responsive-video-item hoverable two-row-item"
+        [class.item-show]="all == 'recent'"
+        (click)="gotoVideo(video.videoID)"
+      >
+        <img [src]="video.thumbnailLink" />
+        <div class="hover-item">
+          <h3>{{ video["title"] }}</h3>
+          <div class="play-button"></div>
+          <p>
+            <span>{{ video.maturityRating }}</span>
+            <span>{{ video.videoLength }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="showViewAll(newVideos?.length) && all == null">
+    <div class="small-12 column text-right">
+      <button class="svod-btn-view-all" (click)="viewAllRecent()">
+        <span>View all</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="video-list" *ngIf="all == null || all == 'popularVideos'">
+  <div class="row">
+    <div class="small-12 columns">
+      <h3>Most Popular Movies</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <div
+        *ngFor="let video of popularVideos; let i = index; let last = last"
+        [class.end]="last"
+        class="video-item responsive-video-item hoverable two-row-item"
+        (click)="gotoVideo(video.videoID)"
+        [class.item-show]="all == 'popularVideos'"
+      >
+        <img [src]="video.thumbnailLink" />
+        <div class="hover-item">
+          <h3>{{ video.title }}</h3>
+          <div class="play-button"></div>
+          <p>
+            <span>{{ video.maturityRating }}</span>
+            <span>{{ video.videoLength }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="showViewAll(popularVideos?.length) && all == null">
+    <div class="small-12 column text-right">
+      <button class="svod-btn-view-all" (click)="viewAllMovies()">
+        <span>View all Popular Movies</span>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="video-list" *ngIf="all == null || all == 'popularTVShows'">
+  <div class="row">
+    <div class="small-12 columns">
+      <h3>Most Popular Shows</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <div
+        *ngFor="let video of popularTVShows; let i = index; let last = last"
+        [class.end]="last"
+        class="video-item responsive-video-item hoverable two-row-item"
+        (click)="gotoShow(video.TvShowID)"
+        [class.item-show]="all == 'popularTVShows'"
+      >
+        <img [src]="video.thumbnailLink" />
+        <div class="hover-item">
+          <h3>{{ video.showTitle }}</h3>
+          <div class="play-button"></div>
+          <p>
+            <span>{{ video.genre }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="showViewAll(popularTVShows?.length) && all == null">
+    <div class="small-12 column text-right">
+      <button class="svod-btn-view-all" (click)="viewAllShows()">
+        View all Popular Shows
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngFor="let genre of genreVideos">
+  <div
+    class="video-list"
+    *ngIf="genre.total && (all == null || all == genre.genre)"
+  >
+    <div class="row">
+      <div class="small-12 columns">
+        <h3>Movies: {{ genre.genre }}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <div
+          *ngFor="let video of genre.videos; let i = index; let last = last"
+          [class.end]="last"
+          class="video-item responsive-video-item hoverable two-row-item"
+          (click)="gotoVideo(video.videoID)"
+          [class.item-show]="all == genre.genre"
+        >
+          <img [src]="video.thumbnailLink" />
+          <div class="hover-item">
+            <h3>{{ video.title }}</h3>
+            <div class="play-button"></div>
+            <p>
+              <span>{{ video.maturityRating }}</span>
+              <span>{{ video.videoLength }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="showViewAll(genre.videos.length) && all == null">
+      <div class="small-12 column text-right">
+        <button class="svod-btn-view-all" (click)="viewAll(genre)">
+          View all {{ genre.genre }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngFor="let genre of genreTVShows">
+  <div
+    class="video-list"
+    *ngIf="genre.total && (all == null || all == genre.genre)"
+  >
+    <div class="row">
+      <div class="small-12 columns">
+        <h3>TV Show: {{ genre.genre }}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <div
+          *ngFor="let video of genre.tvshows; let i = index; let last = last"
+          [class.end]="last"
+          class="video-item responsive-video-item hoverable two-row-item"
+          (click)="gotoShow(video.TvShowID)"
+          [class.item-show]="all == genre.genre"
+        >
+          <img [src]="video.thumbnailLink" />
+          <div class="hover-item">
+            <h3>{{ video.showTitle }}</h3>
+            <div class="play-button"></div>
+            <p>
+              <span>{{ video.genre }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="showViewAll(genre.tvshows.length) && all == null">
+      <div class="small-12 column text-right">
+        <button class="svod-btn-view-all" (click)="viewAll(genre)">
+          View all {{ genre.genre }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="verify-email-popup"> -->
+<modal
+  #verifyYourEmail
+  [closeOnOutsideClick]="false"
+  [closeOnEscape]="false"
+  [hideCloseButton]="true"
+  modalClass="verify-email-popup"
+>
+  <modal-content>
+    <div class="mb-4 mt-6 text-center">
+      <h4 class="text-2xl font-black leading-none">
+        Almost there, hold up while we setup your account.
+      </h4>
+    </div>
+    <div class="mb-6 text-center">
+      <span
+        >We sent a verification email to you, please go
+        <a class="link" (click)="verifyEmail()">verify your email.</a></span
+      >
+    </div>
+    <div class="mb-6 text-center">
+      <button
+        type="button"
+        class="w-3/4 h-12 bg-purple-800 hover:bg-purple-700 font-bold text-white font-bold py-2 px-4 rounded"
+        (click)="startWatching()"
+      >
+        Start Watching
+      </button>
+    </div>
+    <div class="mb-4 text-center">
+      <span class="text-sm"
+        >You will need to verify your email in order to have access to your
+        account after this first session. Run into any snags, give us a shout at
+        <span class="underline">support@corco.com</span></span
+      >
+    </div>
+  </modal-content>
+</modal>
+<!-- </div> -->
+
+<!-- <div class="set-password-popup"> -->
+<modal
+  #setPassword
+  [closeOnOutsideClick]="false"
+  [closeOnEscape]="false"
+  [hideCloseButton]="true"
+  modalClass="set-password-popup"
+>
+  <modal-content>
+    <div
+      class="container mx-auto h-full flex justify-center flex-col items-center py-8 relative"
+    >
+      <div class="w-full min-w-sm max-w-md">
+        <h4 class="font-black text-3xl mb-1 text-center">
+          Setup your account.
+        </h4>
+        <p class="font-normal text-center mb-8">
+          You just need setup your password so you can continue to access Corco.
+        </p>
+        <form
+          [formGroup]="setPasswordForm"
+          (ngSubmit)="onSubmit(setPasswordForm.value)"
+        >
+          <div class="mb-4">
+            <label class="font-bold text-gray-900 block mb-2">Email</label>
+            <input
+              type="email"
+              class="block appearance-none w-full border-gray-400 border-solid border rounded  text-gray-600 font-medium cursor-not-allowed  h-12 px-2 py-2"
+              formControlName="userEmail"
+              maxlength="50"
+              disabled
+            />
+          </div>
+          <div class="small-12 float-left">
+            <span
+              *ngIf="
+                !setPasswordForm.get('userEmail').valid &&
+                setPasswordForm.get('userEmail').touched
+              "
+              class="help-block sub-little-error margin-0"
+              >Email is
+              {{
+                !setPasswordForm.get("userEmail").valid &&
+                setPasswordForm.get("userEmail").value === ""
+                  ? "required"
+                  : "not valid"
+              }}</span
+            >
+          </div>
+
+          <div class="mb-4">
+            <label class="font-bold text-gray-900 block mb-2">First Name</label>
+            <input
+              type="text"
+              class="block appearance-none w-full border-gray-400 border-solid border rounded shadow-inner text-gray-800 font-medium h-12 px-2 py-2 focus:text-gray-900 focus:shadow-outline relative"
+              formControlName="firstName"
+              (keyup)="userNamePassMatch()"
+            />
+          </div>
+          <div class="small-12 float-left">
+            <span
+              *ngIf="
+                !setPasswordForm.get('firstName').valid &&
+                setPasswordForm.get('firstName').touched
+              "
+              class="help-block sub-little-error margin-0"
+              >First name is
+              {{
+                !setPasswordForm.get("firstName").valid &&
+                setPasswordForm.get("firstName").value === ""
+                  ? "required"
+                  : "not valid"
+              }}</span
+            >
+          </div>
+
+          <div formGroupName="passwords">
+            <div class="mb-4">
+              <label class="font-bold text-gray-900 block mb-2">Password</label>
+              <div class="relative">
+                <div
+                  class="absolute inset-y-0 right-0 flex items-center z-10 pr-2"
+                >
+                  <span
+                    *ngIf="!showPassword"
+                    class="text-gray-700 hover:text-gray-900"
+                    (click)="showPassword = !showPassword"
+                    >Show</span
+                  >
+
+                  <span
+                    *ngIf="showPassword"
+                    class="text-gray-700 hover:text-gray-900"
+                    (click)="showPassword = !showPassword"
+                    >Hide</span
+                  >
+                </div>
+                <input
+                  type="{{ !showPassword ? 'password' : 'text' }}"
+                  class="block appearance-none w-full border-gray-400 border-solid border rounded shadow-inner text-gray-800 font-medium h-12 px-2 py-2 focus:text-gray-900 focus:shadow-outline relative"
+                  formControlName="password"
+                  minlength="8"
+                  (keyup)="passwordValidation($event); userNamePassMatch()"
+                />
+              </div>
+            </div>
+            <div class="text-sm">
+              <span
+                *ngIf="
+                  !setPasswordForm.get('passwords').get('password').valid &&
+                  setPasswordForm.get('passwords').get('password').touched
+                "
+                class="help-block sub-little-error"
+                >Password is too short, must be at least 8 characters.</span
+              >
+              <span
+                *ngIf="
+                  !passValid &&
+                  setPasswordForm.get('passwords').get('password').valid &&
+                  setPasswordForm.get('passwords').get('password').touched
+                "
+                class="help-block sub-little-error"
+                >Passwords cannot be only numbers, throw some letters into the
+                mix.</span
+              >
+              <span
+                *ngIf="
+                  firstNamePasswordAreSame &&
+                  setPasswordForm.get('passwords').get('password').valid &&
+                  setPasswordForm.get('passwords').get('password').touched &&
+                  setPasswordForm.get('firstName').valid &&
+                  setPasswordForm.get('firstName').touched
+                "
+                class="help-block sub-little-error"
+                >Password is too similar to your username, try something more
+                unique.</span
+              >
+            </div>
+
+            <div class="mb-4">
+              <label class="font-bold text-gray-900 block mb-2"
+                >Re-Enter Your Password</label
+              >
+              <div class="relative">
+                <div
+                  class="absolute inset-y-0 right-0 flex items-center z-10 pr-2"
+                >
+                  <span
+                    *ngIf="!showRePassword"
+                    class="text-gray-700 hover:text-gray-900"
+                    (click)="showRePassword = !showRePassword"
+                    >Show</span
+                  >
+                  <span
+                    *ngIf="showRePassword"
+                    class="text-gray-700 hover:text-gray-900"
+                    (click)="showRePassword = !showRePassword"
+                    >Hide</span
+                  >
+                </div>
+                <input
+                  type="{{ !showRePassword ? 'password' : 'text' }}"
+                  class="block appearance-none w-full border-gray-400 border-solid border rounded shadow-inner text-gray-800 font-medium h-12 px-2 py-2 focus:text-gray-900 focus:shadow-outline relative"
+                  formControlName="confirm_password"
+                  minlength="8"
+                />
+              </div>
+            </div>
+            <div class="text-sm">
+              <span
+                *ngIf="
+                  !setPasswordForm.get('passwords').valid &&
+                  (setPasswordForm.get('passwords').get('password').touched &&
+                    setPasswordForm.get('passwords').get('confirm_password')
+                      .touched)
+                "
+                class="help-block sub-little-error"
+                >Passwords don't match.</span
+              >
+            </div>
+          </div>
+
+          <div class="w-full">
+            <button
+              [ngClass]="{
+                'btn-disable':
+                  !setPasswordForm.valid ||
+                  !passValid ||
+                  firstNamePasswordAreSame
+              }"
+              [disabled]="!setPasswordForm.valid || !passValid"
+              type="submit"
+              class="w-full h-12 bg-purple-800 hover:bg-purple-700 font-bold text-white font-bold py-2 px-4 rounded"
+            >
+              Lets go!
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </modal-content>
+</modal>
+<!-- </div> -->
+
+<!-- <mcvod-add-address *ngIf="user"
+  [showAddAddress]="showAddAddress"
+  [user]="user"
+  [firstAddAddress]="true"
+  (onAddAddressClosed)="onAddAddressClosed($event)">
+</mcvod-add-address> -->

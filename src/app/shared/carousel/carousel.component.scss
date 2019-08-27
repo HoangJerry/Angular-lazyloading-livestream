@@ -1,0 +1,19 @@
+.custom-content {
+
+  $colors-list: dodgerblue, rebeccapurple, darkgoldenrod;
+
+  @each $current-color in $colors-list {
+    $i: index($colors-list, $current-color);
+
+    .custom-slide-#{$i} {
+      background-color: $current-color;
+      text-align: center;
+      color: white;
+      padding: 2rem 4rem;
+
+      h2, h3 {
+        color: white;
+      }
+    }
+  }
+}

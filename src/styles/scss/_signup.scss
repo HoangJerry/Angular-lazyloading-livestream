@@ -1,0 +1,299 @@
+/* Step */
+$signup-steps-font-size: 18px;
+$signup-steps-margin-bottom: 48px;
+$signup-step-border: 2px solid $warm-grey;
+$signup-step-border-radius: 50%;
+$signup-step-height: 24px;
+$signup-step-width: $signup-step-height;
+$signup-description-margin-top: 24px;
+
+.signup-steps {
+  font-size: $signup-steps-font-size;
+  letter-spacing: 0;
+  margin-bottom: $signup-steps-margin-bottom;
+
+  .signup-step {
+    color: $warm-grey;
+    border: $signup-step-border;
+    border-radius: $signup-step-border-radius;
+    width: $signup-step-height;
+    height: $signup-step-width;
+    text-align: center;
+    display: inline-block;
+    line-height: 1.1;
+  }
+
+  .signup-step-divider {
+    color: $warm-grey;
+  }
+
+  .active {
+    color: $light-orange;
+    border-color: $light-orange;
+  }
+}
+
+.signup-description {
+  margin-top: $signup-description-margin-top;
+}
+
+
+.modal-dialog {
+  margin: 30px auto;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+  .close {
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  .modal-body {
+    padding: 20px 30px;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+    }
+  }
+
+  .modal-footer {
+    display: none;
+  }
+}
+
+.account-setup {
+  .account-setup-header {
+    width: 100%;
+    float: left;
+    padding: 5px 0;
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .desc {
+      font-size: 14px;
+      width: 100%;
+    }
+  }
+  .password-container {
+    position: relative;
+    .show-hide-password {
+      position: absolute;
+      right: 25px;
+      top: 36px;
+      cursor: pointer;
+    }
+  }
+  .lets-go-btn {
+    background: #201729;
+    cursor: pointer;
+  }
+  .disable-submit {
+    cursor: not-allowed;
+    opacity: 0.8 !important;
+  }
+}
+
+//sign up page main container
+.signup-body {
+  background: $white;
+  min-height: 100vh;
+  font-family: $body-font-family;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+//content container with email field and continue button
+.content-container {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: flex-start;
+  //padding-top: 80px;
+  min-height: 100vh;
+  background: $white;
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+  }
+  .img-container {
+    min-height: 100px;
+    .logo-img {
+      position: relative;
+      left: $footer-link-margin-right;
+      top: $footer-link-margin-right;
+    }
+  }
+  .continue-btn {
+    width: 100%;
+    max-width: 100%;
+    height: $orbit-title-font-size-tablet;
+    background: $black-btn;
+    color: $white;
+    text-transform: $anchor-text-decoration;
+    letter-spacing: unset;
+    border-radius: 4px;
+    border: $anchor-text-decoration;
+    cursor: pointer;
+    font-size: $sub-heading;
+    &:focus {
+      outline: $anchor-text-decoration;
+    }
+  }
+  button {
+    &:disabled {
+      opacity: 0.8;
+      cursor: not-allowed;
+    }
+  }
+  .already-have-an-acc-link {
+    font-size: 12px;
+    width: 100%;
+    color: $dark-grey;
+    .sign-in-link {
+      border-bottom: 1px solid $dark-grey;
+      color: $dark-grey;
+      &:focus, &:hover {
+        text-decoration: $anchor-text-decoration;
+      }
+    }
+  }
+  .terms-of-service-and-policy-container {
+    position: relative;
+    top: 80px;
+    left: 25%;
+    @media only screen and (max-width: 767px) {
+      left: 0;
+      top: 0;
+      margin-top: $search-input-icon-position-top;
+      padding-bottom: $off-canvas-btn-width;
+    }
+    .terms-of-service-and-policy {
+      font-size: $footer-font-size;
+      color: $dark-grey;
+    }
+  }
+  span a {
+    color: $dark-grey;
+    text-decoration: $anchor-text-decoration;
+    border-bottom: 1px solid $dark-grey;
+  }
+  .email-form-container {
+    position: relative;
+    top: 80px;
+    @media only screen and (max-width: 767px) {
+      top: 0;
+    }
+    .email-form-sub-container {
+      margin: 0 auto;
+      width:50%;
+      @media only screen and (max-width: 767px) {
+        width: 100%;
+      }
+      .sub-heading {
+        font-size: $sub-heading;
+        @media only screen and (max-width: 360px) {
+          font-size: $footer-font-size;
+        }
+      }
+      .sign-up-form-label {
+        font-size: $footer-font-size;
+        color: $dark-grey;
+      }
+    }
+  }
+}
+
+// Main heading for both the sections
+.main-heading {
+  font-size: $orbit-bullets-margin;
+  @media only screen and (min-width: 361px) and (max-width: 767px) {
+    font-size: $search-input-height;
+  }
+  @media only screen and (max-width: 360px) {
+    font-size: $footer-margin-top;
+  }
+}
+
+// free account container
+.free-acc-container {
+  width: 40%;
+  background-color: $dark-grey;
+  min-height: 100vh;
+  padding: 45px;
+  color: lightgray;
+  text-align: left;
+  ul {
+    margin: 0;
+    position: relative;
+    top: $search-input-width-tablet;
+    li{
+      list-style-type: $anchor-text-decoration;
+      padding: 15px 0;
+    }
+  }
+  .free-acc-sub-container {
+    position: relative;
+    top: 105px;
+    .free-acc-heading-color {
+      color: $grey-color-heading;
+    }
+  }
+}
+
+.error-input-field{
+  background: linear-gradient(to bottom,transparent 95%,#cd5252 95%) no-repeat;
+  border-bottom: 1px solid #cd5252;
+}
+
+
+//error block for the signup API error
+.error-block {
+  margin: 0 auto;
+  font-size: 13px;
+  background: $alert-color;
+  color: #fff;
+  text-align: center;
+  line-height: 25px;
+  position: relative;
+  top: $footer-padding-top;
+  padding: $small-text-font-size $dropdown-large-link-font-size;
+  border-radius: 5px;
+  @media only screen and (max-width: 767px) {
+    top: $top-bar-right-margin-top;
+    width: 80%;
+    line-height: $dropdown-large-link-font-size;
+    margin-bottom: $search-input-icon-position-top;
+  }
+  span {
+    display: block;
+    b{
+      font-size: $box-child-margin-bottom;
+      text-decoration: underline;
+      cursor: pointer;
+      a {
+        text-decoration: $anchor-text-decoration;
+        color: $white;
+        border-bottom: $anchor-text-decoration;
+      }
+    }
+  }
+  .close-icon {
+    text-align: right;
+    position: absolute;
+    right: -5px;
+    margin-top: 0;
+    font-size: $sub-heading;
+    color: $white;
+    top: -5px;
+    background: $black-btn;
+    padding: 3px 7px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}

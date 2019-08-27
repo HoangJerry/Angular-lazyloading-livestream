@@ -1,0 +1,40 @@
+<div class="svod-content">
+  <div class="video-list video-content-padding-top">
+    <div class="row">
+      <div class="small-12 columns">
+        <h3>Most Recent Movies</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <div *ngFor="let video of kidVideos; let i = index; let last = last" [class.end]="last" class="video-item responsive-video-item hoverable" (click)="gotoVideo(video.videoID)">
+          <img [src]="video.thumbnailLink">
+          <div class="hover-item">
+            <h3>{{ video.title }}</h3>
+            <div class="play-button"></div>
+            <p><span>{{ video.maturityRating }}</span> <span>{{ video.videoLength }}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="video-list">
+    <div class="row">
+      <div class="small-12 columns">
+        <h3>Most Recent Shows</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <div *ngFor="let video of kidTVShows; let i = index; let last = last" [class.end]="last" class="video-item responsive-video-item hoverable" (click)="gotoShow(video.TvShowID)">
+          <img [src]="video.thumbnailLink">
+          <div class="hover-item">
+            <h3>{{ video.showTitle }}</h3>
+            <div class="play-button"></div>
+            <p><span>{{ video.genre }}</span> <span></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

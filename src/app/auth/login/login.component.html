@@ -1,0 +1,91 @@
+<div
+  class="container mx-auto h-full flex justify-center flex-col items-center py-8 relative"
+>
+  <div class="w-full min-w-sm max-w-md">
+    <h1 class="font-black text-3xl mb-1 text-center">
+      Sign in to {{ appName }}
+    </h1>
+    <form
+      [formGroup]="loginForm"
+      (submit)="onSubmit(loginForm.value)"
+      class="border-gray-300 border-solid border p-8 bg-white mb-6 rounded-lg shadow-lg"
+    >
+      <div class="mb-4">
+        <label class="font-bold text-gray-900 block mb-2" for="">Email</label>
+        <input
+          class="block appearance-none w-full border-gray-400 border-solid border rounded shadow-inner text-gray-800 font-medium  h-12 px-2 py-2 focus:text-gray-800 focus:shadow-outline"
+          type="email"
+          placeholder="Your email address"
+          formControlName="email"
+          [class.error]="formErrors.email"
+          required
+          mcvodValidateEmail
+          [(ngModel)]="email"
+        />
+        <p class="svod-help-text error" *ngIf="formErrors.email">
+          {{ formErrors.email }}
+        </p>
+      </div>
+      <div class="mb-4">
+        <label class="font-bold text-gray-900 block mb-2" for=""
+          >Password</label
+        >
+        <div class="relative">
+          <div class="absolute inset-y-0 right-0 flex items-center z-10 pr-2">
+            <!-- <a href="#" class="text-gray-700 hover:text-gray-900">Show</a> -->
+          </div>
+          <input
+            class="block appearance-none w-full border-gray-400 border-solid border rounded shadow-inner text-gray-800 font-medium h-12 px-2 py-2 focus:text-gray-900 focus:shadow-outline relative"
+            type="password"
+            placeholder="Your password"
+            formControlName="password"
+            [class.error]="formErrors.password || errorMessage"
+            required
+          />
+        </div>
+        <p class="svod-help-text error" *ngIf="formErrors.password">
+          {{ formErrors.password }}
+        </p>
+        <p class="svod-help-text error" *ngIf="errorMessage">
+          Incorrect password.
+        </p>
+      </div>
+      <div class="mb-6 flex items-center justify-between">
+        <label class="font-bold text-gray-900" for="user_remember_me">
+          <input
+            id="user_remember_me"
+            type="checkbox"
+            value="1"
+            name="user[remember_me]"
+            class="border-gray-400 border-solid border rounded text-purple-600  w-4 h-4  focus:shadow-outline hover:shadow-outline mr-.5"
+          />
+          Keep me logged in
+        </label>
+        <a
+          class="no-underline inline-block align-baseline font-medium text-sm text-blue-600 hover:text-blue-700 hover:underline float-right"
+          routerLink="/reset-password"
+          >Forgot your password?</a
+        >
+      </div>
+      <div class="w-full">
+        <button
+          type="submit"
+          class="w-full h-12 bg-purple-800 hover:bg-purple-700 font-bold text-white font-bold py-2 px-4 rounded"
+        >
+          Sign in
+        </button>
+      </div>
+    </form>
+
+    <div class="text-center">
+      <p class="text-gray-800 text-sm">
+        Don't have an account?
+        <a class="no-underline text-blue-600 font-bold" routerLink="/signup"
+          >Create a free account</a
+        >.
+      </p>
+    </div>
+  </div>
+</div>
+
+<mcvod-verify></mcvod-verify>

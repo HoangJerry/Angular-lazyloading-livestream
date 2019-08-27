@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="474px" height="474px" viewBox="0 0 474 474" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Brand/Logomark</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M116.13,237.001121 C235.583803,237.070385 236.983407,240.757346 236.999806,357.87 C357.87,357.87 357.87,355.5 357.87,237 C357.87,116.13 355.5,116.13 237,116.13 C118.5,116.13 116.13,116.13 116.13,237 Z M474,237 C474,367.891545 367.891545,474 237,474 C106.108455,474 0,367.891545 0,237 C0,106.108455 106.108455,0 237,0 C367.891545,0 474,106.108455 474,237 Z" id="path-1"></path>
+    </defs>
+    <g id="Pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Brand/Logomark">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#23182E" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

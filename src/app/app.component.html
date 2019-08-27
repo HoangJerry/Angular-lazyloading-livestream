@@ -1,0 +1,7 @@
+<div class="antialiased">
+    <mcvod-navbar [hidden]="isHidden()"></mcvod-navbar>
+    <router-outlet></router-outlet>
+    <mcvod-footer [hidden]="isHidden()"></mcvod-footer>
+    <mcvod-not-logged-footer *ngIf="pageName !== '/signup' && pageName !== '/reset-password' && hiddenNotloggedInFooter" [hidden]="!isHidden()"></mcvod-not-logged-footer>
+  </div>
+    <mcvod-spinner></mcvod-spinner>

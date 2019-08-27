@@ -1,0 +1,137 @@
+<div [hidden]="started">
+  <div class="video-banner" [ngStyle]="{'background-image': 'url(' + video?.featureImageLink + ')'}">
+    <div class="row video-banner-content">
+      <div class="small-12 medium-4 columns text-center video-image">
+        <img [src]="video?.episodeImageLink" *ngIf="video?.episodeImageLink">
+        <div class="play-button" (click)="start()" *ngIf="player">
+          <!-- <img src="../../../styles/images/play.svg" alt="Play Button"> -->
+        </div>
+      </div>
+      <div class="small-12 medium-8 columns text-left video-header">
+        <h1 class="text-uppercase">{{ video?.title }}</h1>
+        <div class="row">
+          <div class="small-6 columns">RATED {{ video?.maturityRating }}</div>
+          <div class="small-6 columns">{{ video?.videoLength }}</div>
+        </div>
+        <br>
+        <p>{{ video?.description }}</p>
+        <p>Cast: {{ video?.crew?.cast }}</p>
+        <p>Creator: {{ video?.crew?.creator }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="svod-content">
+    <div class="row">
+      <div class="small-12 columns">
+        <p>
+          <a (click)="goBack()" class="back-link"><i class="fas fa-long-arrow-left"></i> back</a>
+        </p>
+      </div>
+    </div>
+    
+    <!-- <div class="video-list">
+      <div class="row">
+        <div class="small-12 columns">
+          <h3>Recommended for you</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          <div *ngFor="let v of recomendedVideos; let i = index; let last = last" [class.end]="last" class="video-item responsive-video-item hoverable" (click)="gotoVideo(v.videoList.videoID)">
+            <img [src]="v.videoList.thumbnailLink" *ngIf="v.videoList.tvShow === null">
+            <img [src]="v.videoList.tvShow.thumbnailLink" *ngIf="v.videoList.tvShow !== null">
+            <div class="hover-item">
+              <h3>{{ v.videoList.title }}</h3>
+              <div class="play-button"></div>
+              <p><span>{{ v.videoList.maturityRating }}</span> <span>{{ v.videoList.videoLength }}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
+
+<div class="full-screen" [class.video-finished]="ended" [hidden]="!started">
+  <div class="row">
+    <div class="small-12 columns">
+      <br>
+      <p>
+        <a (click)="unPlay()" class="border-rounded-button back-play"><i class="fas fa-long-arrow-left"></i> back</a>
+      </p>
+    </div>
+  </div>
+  <div class="row" [hidden]="ended">
+    <div class="small-12 column">
+      <video id=video-{{playerID}} class="video-js vjs-default-skin" controls>
+      </video>
+    </div>
+  </div>
+  <div *ngIf="ended">
+    <div class="video-list">
+      <div class="row">
+        <div class="small-12 column">
+          <h3 class="text-center">You might also like</h3>
+        </div>
+      </div>
+      <div class="row" *ngIf="topic">
+        <div *ngFor="let v of topic.episodes; let i = index; let last = last" [class.end]="last" class="small-12 medium-4 large-3 columns video-item" (click)="gotoVideo(v.videoID)">
+          <img [src]="v.episodeImageLink">
+        </div>
+      </div>
+      <div class="row" *ngIf="!nextEpisodes && !topic">
+        <div *ngFor="let v of recomendedVideos; let i = index; let last = last" [class.end]="last" class="small-12 medium-4 large-3 columns video-item" (click)="gotoVideo(v.videoList.videoID)">
+          <img [src]="v.videoList.episodeImageLink">
+        </div>
+      </div>
+      <div class="row" *ngIf="nextEpisodes && !topic">
+        <div *ngFor="let v of nextEpisodes; let i = index; let last = last" [class.end]="last" class="small-12 medium-4 large-3 columns video-item" (click)="gotoVideo(v.videoID)">
+          <img [src]="v.episodeImageLink">
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="nextEpisode">
+      <div class="medium-6 medium-push-6 small-12 columns">
+        <h3>Next Up</h3>
+        <div class="row">
+          <div class="small-12 large-4 columns text-center video-image">
+            <img [src]="nextEpisode?.episodeImageLink" *ngIf="nextEpisode?.episodeImageLink">
+            <button (click)="gotoVideo(nextEpisode?.videoID, true)" *ngIf="player" class="button-play">
+              <img src="../../../styles/images/play.svg" alt="Play Button">
+            </button>
+          </div>
+          <div class="small-12 large-8 columns text-left video-header">
+            <h4 class="text-uppercase">{{ nextEpisode?.title }}</h4>
+            <div class="row">
+              <div class="small-6 columns">RATED {{ nextEpisode?.maturityRating }}</div>
+              <div class="small-6 columns">{{ nextEpisode?.videoLength }}</div>
+            </div>
+            <p>{{ nextEpisode?.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="reveal-overlay show" *ngIf="videoErrorMessage">
+  <div class="reveal show">
+    <div class="row">
+      <div class="small-12 large-10 large-push-1 column">
+        <div class="svod-form-error">
+          <span>You don't have access to play this content.</span>
+        </div>
+        <p *ngIf="user?.planLevel!='MCDonor'">
+          <a [routerLink]="['/my-account/donation']" class="link-secondary">Go update donation</a>
+        </p>
+        <p *ngIf="user?.planLevel=='MCDonor'">For information please contact Miracle Channel Donor Relations:
+          <a class="link-secondary">partners@miraclechannel.ca</a> or <a class="link-secondary">1-800-414-2545</a>
+        </p>
+      </div>
+    </div>
+    <button class="close-button" type="button" (click)="closeVideoErrorMessage()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>

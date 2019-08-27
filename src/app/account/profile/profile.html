@@ -1,0 +1,91 @@
+<div class="svod-box">
+  <div class="row">
+    <form class="change-password-form svod-form" [formGroup]="changePasswordForm" (submit)="onSubmit(changePasswordForm.value)">
+      <div class="small-12 medium-12 large-12 columns">
+        <h3>Account Details</h3>
+      </div>
+      <div class="small-12 medium-12 large-12 columns">
+     
+        <div class="svod-box" >
+          <div class="row">
+            <div class="small-12 medium-12 large-12 columns">
+              <h3>Username</h3>
+            </div>
+            <div class="small-12 medium-12 large-12 columns">
+              <p><span class="account-username">{{user?.userEmail}}</span></p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="">
+        <div class="svod-box">
+          <div class="row">
+            <div class="small-12 medium-12 large-12 columns">
+              <h3>Password</h3>
+            </div>
+            <div class="small-12 medium-12 large-12 columns">
+              <div class="row">
+                <div class="small-12 column">
+                  <label>Current password</label>
+                  <input type="password" class="form-text form-text-gray" formControlName="old_password" [class.error]="formErrors.old_password" [class.success]="changePasswordSuccess" required>
+                  <p class="svod-help-text error" *ngIf="formErrors.old_password">{{formErrors.old_password}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 medium-6 large-6 columns">
+                  <label>New password</label>
+                  <input type="password" class="form-text form-text-gray" formControlName="new_password1" [class.error]="formErrors.new_password1" [class.success]="changePasswordSuccess" required>
+                  <p class="svod-help-text error" *ngIf="formErrors.new_password1">{{formErrors.new_password1}}</p>
+                </div>
+                <div class="small-12 medium-6 large-6 columns">
+                  <label>Confirm new password</label>
+                  <input type="password" class="form-text form-text-gray" formControlName="new_password2" [class.error]="formErrors.new_password2" [class.success]="changePasswordSuccess" required>
+                  <p class="svod-help-text error" *ngIf="formErrors.new_password2">{{formErrors.new_password2}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 medium-12 large-12 columns">
+        <p><button class="svod-btn svod-btn-orange svod-btn-medium">Update Account</button></p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<mcvod-gift-cards [showGiftcardForm]="showGiftcardForm"
+  (onGiftcardFormOpened)="onGiftcardFormOpened($event)"
+  *ngIf="showGiftcardSection">
+</mcvod-gift-cards>
+
+
+<mcvod-gift-card-form [showGiftcardForm]="showGiftcardForm"
+  (onGiftcardFormClosed)="onGiftcardFormClosed($event)">
+</mcvod-gift-card-form>
+
+<mcvod-deactivate-account [showDeactivateAccountForm]="showDeactivateAccountForm"
+  (onDeactivateAccountFormClosed)="onDeactivateAccountFormClosed($event)"
+  (onDeactivateAccountSuccessOpened)="onDeactivateAccountSuccessOpened($event)">
+</mcvod-deactivate-account>
+
+<mcvod-edit-profile *ngIf="user"
+  [showEditProfile]="showEditProfile"
+  [user]="user"
+  (onEditProfileClosed)="onEditProfileClosed($event)"
+  (onEditProfileSubmitted)="onEditProfileSubmitted($event)">
+</mcvod-edit-profile>
+
+ <mcvod-change-username *ngIf="user"
+  [showChangeUsername]="showChangeUsername"
+  [user]="user"
+  (onChangeUsernameClosed)="onChangeUsernameClosed($event)"
+  (onChangeUsernameSubmitted)="onChangeUsernameSubmitted($event)">
+</mcvod-change-username> 
+
+<!-- <mcvod-add-address  *ngIf="user"
+  [showAddAddress]="showAddAddress"
+  [user]="user"
+  [firstAddAddress]="false"
+  (onAddAddressClosed)="onAddAddressClosed($event)">
+</mcvod-add-address> -->

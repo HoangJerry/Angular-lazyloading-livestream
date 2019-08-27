@@ -1,0 +1,128 @@
+$svod-btn-grey-padding: 6px 18px;
+$svod-btn-grey-font-size: 14px;
+$svod-btn-grey-color: $grey;
+
+$svod-btn-border-radius: 3px;
+$svod-btn-font-size: 16px;
+$svod-btn-font-size-tablet: 14px;
+$svod-btn-orange-hover-background: #f1a73c;
+$svod-btn-orange-active-background: #f6b352;
+$svod-btn-gray: rgba(255, 255, 255, 0.3);
+$svod-btn-gray-font-size: 22px;
+
+$svod-btn-height: 48px;
+
+$svod-btn-view-all-min-height: 24px;
+$svod-btn-view-all-padding-right: 24px;
+$svod-btn-view-all-font-size: 16px;
+
+$svod-btn-warm-grey-color: #626466;
+
+$svod-btn-medium-padding: 13px;
+$svod-btn-medium-padding-tablet: 8px;
+
+$svod-btn-remove-size: 20px;
+
+.svod-btn {
+  border-radius: $svod-btn-border-radius;
+  font-size: $svod-btn-font-size;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: $corco-lightest-purple;
+  opacity: 1 !important;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.svod-btn-normal {
+    height: $svod-btn-height;
+    line-height: 2;
+    width: 100%;
+  }
+
+  &.svod-btn-medium {
+    height: $svod-btn-height;
+    line-height: 2;
+    width: auto;
+    padding: 0 $svod-btn-medium-padding;
+
+    @media screen and (max-width: 768px) {
+      padding: 0 $svod-btn-medium-padding-tablet;
+      font-size: $svod-btn-font-size-tablet;
+    }
+  }
+
+  &.svod-btn-grey-text {
+    color: $svod-btn-grey-color !important;
+    padding: $svod-btn-grey-padding;
+    font-size: $svod-btn-grey-font-size;
+  }
+
+  &.svod-btn-orange {
+    background: $corco-mid-purple;
+
+    &:hover {
+      background: $corco-dark-purple;
+    }
+
+    &.active {
+      background: $svod-btn-orange-active-background;
+      box-shadow: 0 0 5px 0 $off-white;
+    }
+  }
+
+  &.svod-btn-gray {
+    background-color: $svod-btn-gray;
+    font-size: $svod-btn-gray-font-size;
+
+    &.active {
+      background: $svod-btn-orange-active-background;
+      box-shadow: 0 0 5px 0 $off-white;
+    }
+  }
+
+  &.svod-btn-warm-grey {
+    background-color: $warm-grey;
+    font-size: $svod-btn-font-size;
+    color: $svod-btn-warm-grey-color;
+  }
+
+  &.svod-btn-remove {
+    background-color: $alert-color;
+    width: $svod-btn-remove-size;
+    height: $svod-btn-remove-size;
+
+    i {
+      color: $fifth-color;
+    }
+  }
+
+  &.half-size-for-large-only {
+    width: 49%;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+}
+
+.svod-btn-view-all {
+  background: transparent url("~assets/icons/next.svg") center right no-repeat;
+  min-height: $svod-btn-view-all-min-height;
+  padding-right: $svod-btn-view-all-padding-right;
+  font-size: $svod-btn-view-all-font-size;
+  color: $grey;
+
+  &:hover {
+    color: $corco-mid-purple;
+  }
+}
+
+.bottom-margin-medium {
+  margin-bottom: 2%;
+}
+.bottom-margin-large {
+  margin-bottom: 4%;
+}

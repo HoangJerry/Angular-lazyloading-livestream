@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Corco Mark Color</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Corco-Mark-Color" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-15">
+            <path d="M80,40 L60.4,40 C60.4,60 60.4,60.4 40,60.4 L40,80 C62.0914,80 80,62.0914 80,40 Z" id="right-bottom" fill="#FB836B"></path>
+            <path d="M40,0 L40,19.6 C60,19.6 60.4,19.6 60.4,40 L80,40 C80,17.9086 62.0914,0 40,0" id="right-top" fill="#7FB6A1"></path>
+            <path d="M40,80 C17.9086,80 0,62.0914 0,40 L19.6,40 C19.6,60 19.6,60.4 40,60.4 L40,80" id="left-bottom" fill="#7F6698"></path>
+            <path d="M40,0 L40,19.6 C20,19.6 19.6,19.6 19.6,40 L0,40 C0,17.9086 17.9086,0 40,0" id="left-top" fill="#FAD26D"></path>
+            <path d="M40,61.1111111 C40,40.4139434 40,40 18.8888889,40 C18.8888889,60.6971678 18.8888889,61.1111111 40,61.1111111" id="Fill-11" fill="#7F6698"></path>
+        </g>
+    </g>
+</svg>

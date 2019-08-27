@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+
+//import before Foundation itself to use this as the settings files
+// xy-grid is set to true in this file.
+@import "styles/scss/settings";
+
+// Import Foundation for Sites
+// See https://foundation.zurb.com/sites/docs/sass.html for detailed info.
+@import "~foundation-sites/scss/foundation";
+@include foundation-everything($flex: false);
+
+// Import Angular ngx-foundation Framework Added Styles
+//@import "~ngx-foundation/assets/scss/main";
+
+$fa-font-path: "assets/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+@import "styles/scss/common";
+@import "styles/scss/form";
+@import "styles/scss/home";
+@import "styles/scss/signup";
+@import "styles/scss/video";
+@import "styles/scss/spinner";
+@import "styles/scss/notification";
+@import "styles/scss/button";
+@import "styles/scss/account";
+@import "styles/scss/media";
+// @import "styles/scss/verify-modal";
+@import "styles/scss/reset-password";
+
+//CSS for Font-size for toastr message
+#toast-container .toast-message {
+  font-size: $footer-font-size !important;
+}

@@ -1,0 +1,121 @@
+<div class="flex justify-center">
+  <div class="min-h-screen flex flex-col">
+    <div class="w-1/4 sm:w-full h-20 flex justify-start ">
+      <img src="../../../assets/brand/corco-logo.svg" alt="Corco Logo" />
+    </div>
+
+    <div class="w-full max-w-md">
+      <h4 class="font-black text-3xl leading-tight mb-1">
+        Sign up to start watching
+      </h4>
+      <div class="font-normal mb-8">
+        Enter your email to create your free account
+      </div>
+
+      <div
+        *ngIf="messages['unverifiedUser']"
+        class="bg-red-100 border border-red-400 text-red-700 pl-4 pr-8 py-3 rounded relative mb-2"
+      >
+        <strong class="font-bold">Oops! </strong>
+        <span class="block sm:inline mr-2"
+          >Your email has not been verified yet.
+        </span>
+        <a (click)="resendVerificationMail(signUpForm.value)" class="underline"
+          >Resend Verification Email</a
+        >
+        <button
+          type="button"
+          class="absolute top-0 right-0 text-red-500 h-6 w-6 m-2 "
+          (click)="closeIcon()"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div
+        *ngIf="messages['verifiedUser']"
+        class="bg-red-100 border border-red-400 text-red-700 pl-4 pr-8 py-3 rounded relative"
+      >
+        <strong class="font-bold">Uh Oh! </strong>
+        <span class="block sm:inline mr-2"
+          >This account has already been verified, try signing in.
+          <a routerLink="/login" class="underline">Sign In</a></span
+        >
+        <button
+          type="button"
+          class="absolute top-0 bottom-0 right-0 px-4 py-3 text-red-500 h-6 w-6 "
+          (click)="closeIcon()"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <form
+        class=""
+        [formGroup]="signUpForm"
+        (ngSubmit)="onSubmit(signUpForm.value)"
+      >
+        <div class="w-full" [ngClass]="{ 'width-100': ismobileViewSignUp }">
+          <div class="mb-4">
+            <label class="font-bold text-gray-900 block mb-2">Email</label>
+            <input
+              type="email"
+              class="block appearance-none w-full border-gray-400 border-solid border rounded shadow-inner text-gray-800 font-medium h-12 px-2 py-2 focus:text-gray-800 focus:shadow-outline"
+              formControlName="email"
+            />
+            <div class="">
+              <span
+                *ngIf="
+                  signUpForm.get('email').value &&
+                  !signUpForm.get('email').valid &&
+                  signUpForm.get('email').touched
+                "
+                class="text-red-600"
+                ><i class="fas fa-exclamation-circle mr-1"></i>
+                Email is
+                {{
+                  !signUpForm.get("email").valid &&
+                  signUpForm.get("email").value === ""
+                    ? "required"
+                    : "not valid"
+                }}</span
+              >
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <button
+              type="submit"
+              class="w-full h-12 bg-purple-800 hover:bg-purple-700 font-bold text-white font-bold py-2 px-4 rounded"
+              [disabled]="!signUpForm.valid"
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="text-gray-800 text-sm mb-8">
+        Already have an account?
+        <a class="no-underline text-blue-600 font-bold" routerLink="/login"
+          >Sign In</a
+        >
+      </div>
+      <div class="text-gray-800 text-sm leading-tight">
+        By creating an account, you agree to our
+        <a
+          href="https://help.corco.com/article/41-terms-of-service"
+          target="_blank"
+          class="text-blue-600 underline"
+          >Terms of Service</a
+        >
+        and
+        <a
+          href="https://help.corco.com/article/42-privacy-policy"
+          target="_blank"
+          class="text-blue-600 underline"
+          >Privacy Policy</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

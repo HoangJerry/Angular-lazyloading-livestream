@@ -1,0 +1,22 @@
+<div class="svod-box" *ngIf="!showBuyGiftcard && !showRedeemGiftcard">
+  <div class="row">
+    <div class="small-12 column">
+      <h3><i class="fa fa-gift"></i> Gift Cards</h3>
+      <p>Buy a gift for friends or familly, and redeem ones given to you.</p>
+      <p>
+        <a (click)="showBuyGiftcardBox()" class="border-rounded-button button-medium">Buy Giftcard</a>
+        <a (click)="showRedeemGiftcardBox()" class="border-rounded-button button-medium">Redeem Giftcard</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<mcvod-buy-gift-card [showGiftcardForm]="showGiftcardForm"
+  [showBuyGiftcard]="showBuyGiftcard"
+  (onGiftcardFormOpenedChild)="onGiftcardFormOpenedChild($event)"
+  (onBuyGiftcardClosed)="onBuyGiftcardClosed($event)">
+</mcvod-buy-gift-card>
+
+<mcvod-redeem-gift-card [showRedeemGiftcard]="showRedeemGiftcard"
+  (onRedeemGiftcardClosed)="onRedeemGiftcardClosed($event)">
+</mcvod-redeem-gift-card>

@@ -1,0 +1,113 @@
+<div class="svod-content video-content-padding-top">
+  <div class="video-list" *ngIf="all == null || all == 'newVideos'">
+    <div class="row">
+      <div class="small-12 columns">
+        <h3>Recently Added</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <div
+          *ngFor="let video of newVideos; let i = index; let last = last"
+          [class.end]="last"
+          class="video-item responsive-video-item hoverable two-row-item"
+          [class.item-show]="all == 'newVideos'"
+          (click)="gotoVideo(video.videoID)"
+        >
+          <img [src]="video.thumbnailLink" />
+          <div class="hover-item">
+            <h3>{{ video.title }}</h3>
+            <div class="play-button"></div>
+            <p>
+              <span>{{ video.maturityRating }}</span>
+              <span>{{ video.videoLength }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="showViewAll(newVideos?.length) && all == null">
+      <div class="small-12 column text-right">
+        <button class="svod-btn-view-all" (click)="viewAll('newVideos')">
+          <span>View all</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="video-list" *ngIf="all == null || all == 'featuredVideos'">
+    <div class="row">
+      <div class="small-12 columns">
+        <h3>Most Popular Movies</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <div
+          *ngFor="let video of featuredVideos; let i = index; let last = last"
+          [class.end]="last"
+          class="video-item responsive-video-item hoverable two-row-item"
+          [class.item-show]="all == 'featuredVideos'"
+          (click)="gotoVideo(video.videoID)"
+        >
+          <img [src]="video.thumbnailLink" />
+          <div class="hover-item">
+            <h3>{{ video.title }}</h3>
+            <div class="play-button"></div>
+            <p>
+              <span>{{ video.maturityRating }}</span>
+              <span>{{ video.videoLength }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="showViewAll(featuredVideos?.length) && all == null">
+      <div class="small-12 column text-right">
+        <button class="svod-btn-view-all" (click)="viewAll('featuredVideos')">
+          <span>View all</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let genre of genreVideos">
+    <div
+      class="video-list"
+      *ngIf="genre.total && (all == null || all == genre.genre)"
+    >
+      <div class="row">
+        <div class="small-12 columns">
+          <h3>Movies: {{ genre.genre }}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          <div
+            *ngFor="let video of genre.videos; let i = index; let last = last"
+            [class.end]="last"
+            class="video-item responsive-video-item hoverable two-row-item"
+            [class.item-show]="all == genre.genre"
+            (click)="gotoVideo(video.videoID)"
+          >
+            <img [src]="video.thumbnailLink" />
+            <div class="hover-item">
+              <h3>{{ video.title }}</h3>
+              <div class="play-button"></div>
+              <p>
+                <span>{{ video.maturityRating }}</span>
+                <span>{{ video.videoLength }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="showViewAll(genre.videos.length) && all == null">
+        <div class="small-12 column text-right">
+          <button class="svod-btn-view-all" (click)="viewAll(genre.genre)">
+            <span>View all</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

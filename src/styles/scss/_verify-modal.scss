@@ -1,0 +1,170 @@
+$link-text-color: #057DD0;
+$label-color: #707881;
+
+.verify-email-popup {
+  font-family: $body-font-family;
+  .heading-container {
+    width: 100%;
+    .title {
+      font-size: $svod-btn-remove-size;
+      color: $black-btn;
+      font-weight: $global-weight-bold;
+      @media only screen and (max-width: 767px) {
+        font-size: $bottom-link-margin-left;
+      }
+    }
+  }
+  .link-container {
+    width: 100%;
+    font-size: $footer-font-size;
+    color: $black-btn;
+    @media only screen and (max-width: 767px) {
+      margin-top: $orbit-button-size-mobile;
+      font-size: $search-input-icon-position-top;
+    }
+    .link {
+      color: $link-text-color;
+      border-bottom: 1px solid $link-text-color;
+    }
+    a {
+     &:hover {
+      text-decoration: $anchor-text-decoration;
+     }
+    }
+  }
+  .btn-container {
+    width: 100%;
+    .start-watching-btn {
+      width: 50%;
+      max-width: 50%;
+      height: $orbit-title-font-size-tablet;
+      background: $black-btn;
+      color: $white;
+      text-transform: $anchor-text-decoration;
+      letter-spacing: unset;
+      border-radius: 4px;
+      border: $anchor-text-decoration;
+      cursor: pointer;
+      font-size: $svod-btn-grey-font-size;
+      margin-top: $search-input-width-mobile;
+      @media only screen and (max-width: 767px) {
+        width: 100%;
+        max-width: 100%;
+        margin-top: $dropdown-large-link-font-size;
+      }
+    }
+  }
+  .verify-email-content-container {
+    width: 60%;
+    margin-left: 20%;
+    font-size: $search-input-icon-position-top;
+    margin-top: $off-canvas-btn-width;
+    @media only screen and (max-width: 767px) {
+      margin-top: $dropdown-large-link-font-size;
+    }
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+      margin-left: $top-bar-right-margin-top;
+    }
+    .support-email {
+      width: 100%;
+      display: block;
+      font-size: $footer-font-size;
+    }
+  }
+}
+
+.set-password-popup {
+  font-family: $body-font-family;
+  text-align: left;
+  .setup-password-container {
+    width: 80%;
+    margin-left: 10%;
+    .setup-pass-heading {
+      width: 100%;
+      .title {
+        font-size: $svod-btn-remove-size;
+        color: $black-btn;
+        font-weight: $global-weight-bold;
+        @media only screen and (max-width: 767px) {
+          font-size: $bottom-link-margin-left;
+        }
+      }
+    }
+    .sub-heading-container {
+      width: 100%;
+      font-size: $footer-font-size;
+      color: $black-btn;
+      @media only screen and (max-width: 767px) {
+        margin-top: $orbit-button-size-mobile;
+        font-size: $search-input-icon-position-top;
+      }
+      span {
+        display: block;
+        font-size: $svod-btn-medium-padding;
+      }
+    }
+    .label-set-pass-form {
+      color: $label-color;
+      font-size: $svod-btn-medium-padding;
+    }
+    .input-field-set-pass-form {
+      height: 38px;
+      background: $white;
+      border: 1px solid $label-color;
+      box-sizing: border-box;
+      border-radius: 4px;
+      font-size: $sub-heading;
+      letter-spacing: 0.35px;
+      color: $black-btn;
+      padding-left: $search-input-icon-position-top;
+      &:disabled {
+        background: #F7F9FA;
+      }
+    }
+    .password-container {
+      position: relative;
+    }
+    .show-btn {
+      position: absolute;
+      right: $search-input-icon-position-top;
+      top: $box-child-padding;
+      font-size: $svod-btn-medium-padding;
+      color: $label-color;
+      cursor: pointer;
+    }
+    .form-container {
+      margin-top: $off-canvas-btn-width;
+    }
+    .lets-go-btn-container {
+      width: 100%;
+      .lets-go-btn {
+        width: 100%;
+        max-width: 100%;
+        height: $orbit-title-font-size-tablet;
+        background: $black-btn;
+        color: $white;
+        text-transform: $anchor-text-decoration;
+        letter-spacing: unset;
+        border-radius: 4px;
+        border: $anchor-text-decoration;
+        cursor: pointer;
+        font-size: $svod-btn-grey-font-size;
+        margin-top: $footer-margin-top;
+        margin-bottom: $orbit-title-font-size-tablet;
+        &:focus {
+          outline: $anchor-text-decoration;
+        }
+        @media only screen and (max-width: 767px) {
+          width: 100%;
+          max-width: 100%;
+          margin-top: $dropdown-large-link-font-size;
+        }
+      }
+      .btn-disable {
+        cursor: $input-cursor-disabled;
+        opacity: 0.8;
+      }
+    }
+  }
+}

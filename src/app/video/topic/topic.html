@@ -1,0 +1,42 @@
+<div class="video-banner" [ngStyle]="{'background-image': 'url(' + topic?.featureImageLink + ')'}">
+  <div class="row video-banner-content">
+    <div class="small-12 column text-center video-header topic-header">
+      <h1 class="text-uppercase">{{ topic?.title }}</h1>
+      <p *ngIf="topic?.episodes?.length > 0">
+        <button class="play-all" (click)="playAll()">
+          <!--Play Icon-->
+          <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+          </svg> Play all
+        </button>
+        <span>{{ topic?.episodes?.length }}
+          <span *ngIf="topic?.episodes?.length == 1">Episode</span>
+          <span *ngIf="topic?.episodes?.length > 1">Episodes</span>
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="svod-content">
+  <div class="row">
+    <div class="small-12 columns">
+      <p>
+        <a (click)="goBack()" class="back-link"><i class="fa fa-long-arrow-left"></i> back</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="video-list" *ngIf="topic">
+    <div *ngFor="let video of topic.episodes;" class="row topic-video-item">
+      <div class="small-4 columns">
+        <img [src]="video.thumbnailLink" (click)="gotoVideo(video.videoID)">
+      </div>
+      <div class="small-8 columns">
+        <h3 (click)="gotoVideo(video.videoID)">{{ video.title }}</h3>
+        <p>{{ video.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>

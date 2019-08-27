@@ -1,0 +1,322 @@
+import { Component, OnInit, OnDestroy, Input, Inject } from "@angular/core";
+import { Router } from "@angular/router";
+
+export enum Direction {
+  UNKNOWN,
+  NEXT,
+  PREV
+}
+
+@Component({
+  selector: "app-carousel",
+  templateUrl: "./carousel.component.html"
+  // styleUrls: ['./carousel.component.scss']
+})
+export class CarouselComponent implements OnInit, OnDestroy {
+  // @Input() public noWrap: boolean;
+  // @Input() public noPause: boolean;
+  // @Input() public topic: boolean;
+  // @Input() public slides: any[];
+
+  //   private currentInterval: any;
+  //   private isPlaying: boolean = false;
+  //   private destroyed: boolean = false;
+  //   private currentSlide: any;
+  //   private _interval: number = 30000;
+
+  //   constructor(@Inject(Router) public router: Router) {
+
+  //   }
+
+  //   ngOnInit(): void {
+  //     if (this.slides.length) {
+  //       this.currentSlide = this.getSlideByIndex(0);
+  //       this.play();
+  //     }
+  //   }
+
+  //   public ngOnDestroy() {
+  //     this.destroyed = true;
+  //   }
+
+  //   public select(nextSlide: any, direction: Direction = Direction.UNKNOWN) {
+  //     let nextIndex = nextSlide.index;
+  //     if (direction === Direction.UNKNOWN) {
+  //       direction = nextIndex > this.getCurrentIndex() ? Direction.NEXT : Direction.PREV;
+  //     }
+
+  //     // prevent this user-triggered transition from occurring if there is already one in progress
+  //     if (nextSlide && nextSlide !== this.currentSlide) {
+  //       this.goNext(nextSlide, direction);
+  //     }
+  //   }
+
+  //   public play() {
+  //     if (!this.isPlaying) {
+  //       this.isPlaying = true;
+  //       this.currentSlide = this.getSlideByIndex(0);
+  //       this.restartTimer();
+  //     }
+  //   }
+
+  //   public pause() {
+  //     if (!this.noPause) {
+  //       this.isPlaying = false;
+  //       this.resetTimer();
+  //     }
+  //   }
+
+  //   /**
+  //    * Go to video page
+  //    */
+  //   public gotoVideo(videoId: string) {
+  //     this.router.navigate(['/video', videoId]);
+  //     return false;
+  //   }
+
+  //   /**
+  //    * Go to topic page
+  //    */
+  //   gotoTopic(topic: string) {
+  //     this.router.navigate(['/topic', topic]);
+  //     return false;
+  //   }
+
+  //   private goNext(slide: any, direction: Direction) {
+  //     if (this.destroyed) {
+  //       return;
+  //     }
+
+  //     for (let i = 0; i < this.slides.length; ++i) {
+  //       this.slides[i].active = false;
+  //     }
+
+  //     slide.active = true;
+
+  //     if (this.currentSlide) {
+  //       this.currentSlide.active = false;
+  //     } else {
+  //       this.currentSlide = this.getSlideByIndex(0);
+  //       this.currentSlide.active = false;
+  //     }
+
+  //     this.currentSlide = slide;
+
+  //     // every time you change slides, reset the timer
+  //     this.restartTimer();
+  //   }
+
+  //   private getSlideByIndex(index: number) {
+  //     let len = this.slides.length;
+  //     for (let i = 0; i < len; ++i) {
+  //       if (this.slides[i].index === index) {
+  //         return this.slides[i];
+  //       }
+  //     }
+  //   }
+
+  //   private getCurrentIndex() {
+  //     return !this.currentSlide ? 0 : this.currentSlide.index;
+  //   }
+
+  //   private next() {
+  //     let newIndex = (this.getCurrentIndex() + 1) % this.slides.length;
+
+  //     if (newIndex === 0 && this.noWrap) {
+  //       this.pause();
+  //       return;
+  //     }
+
+  //     return this.select(this.getSlideByIndex(newIndex), Direction.NEXT);
+  //   }
+
+  //   private prev() {
+  //     let newIndex = this.getCurrentIndex() - 1 < 0 ? this.slides.length - 1 : this.getCurrentIndex() - 1;
+
+  //     if (this.noWrap && newIndex === this.slides.length - 1) {
+  //       this.pause();
+  //       return;
+  //     }
+
+  //     return this.select(this.getSlideByIndex(newIndex), Direction.PREV);
+  //   }
+
+  //   private restartTimer() {
+  //     this.resetTimer();
+  //     let interval = +this._interval;
+  //     if (!isNaN(interval) && interval > 0) {
+  //       this.currentInterval = setInterval(() => {
+  //         let nInterval = +this._interval;
+  //         if (this.isPlaying && !isNaN(this._interval) && nInterval > 0 && this.slides.length) {
+  //           this.next();
+  //         } else {
+  //           this.pause();
+  //         }
+  //       }, interval);
+  //     }
+  //   }
+
+  //   private resetTimer() {
+  //     if (this.currentInterval) {
+  //       clearInterval(this.currentInterval);
+  //       this.currentInterval = null;
+  //     }
+  //   }
+  // }
+  @Input() public noWrap: boolean;
+  @Input() public noPause: boolean;
+  @Input() public topic: boolean;
+  @Input() public slides: any[];
+
+  private currentInterval: any;
+  private isPlaying: boolean = false;
+  private destroyed: boolean = false;
+  private currentSlide: any;
+  private _interval: number = 10000;
+
+  constructor(@Inject(Router) public router: Router) {}
+
+  ngOnInit(): void {
+    if (this.slides.length) {
+      this.currentSlide = this.getSlideByIndex(0);
+      this.play();
+    }
+  }
+
+  public ngOnDestroy() {
+    this.destroyed = true;
+  }
+
+  public select(nextSlide: any, direction: Direction = Direction.UNKNOWN) {
+    let nextIndex = nextSlide.index;
+    if (direction === Direction.UNKNOWN) {
+      direction =
+        nextIndex > this.getCurrentIndex() ? Direction.NEXT : Direction.PREV;
+    }
+
+    // prevent this user-triggered transition from occurring if there is already one in progress
+    if (nextSlide && nextSlide !== this.currentSlide) {
+      this.goNext(nextSlide, direction);
+    }
+  }
+
+  public play() {
+    if (!this.isPlaying) {
+      this.isPlaying = true;
+      this.currentSlide = this.getSlideByIndex[0];
+      this.restartTimer();
+    }
+  }
+
+  public pause() {
+    if (!this.noPause) {
+      this.isPlaying = false;
+      this.resetTimer();
+    }
+  }
+
+  /**
+   * Go to video page
+   */
+  public gotoVideo(videoId: string) {
+    this.router.navigate(["/video", videoId]);
+    return false;
+  }
+
+  /**
+   * Go to topic page
+   */
+  gotoTopic(topic: string) {
+    this.router.navigate(["/topic", topic]);
+    return false;
+  }
+
+  private goNext(slide: any, direction: Direction) {
+    if (this.destroyed) {
+      return;
+    }
+
+    for (let i = 0; i < this.slides.length; ++i) {
+      this.slides[i].active = false;
+    }
+
+    slide.active = true;
+
+    if (this.currentSlide) {
+      this.currentSlide.active = false;
+    } else {
+      this.currentSlide = this.getSlideByIndex(0);
+      this.currentSlide.active = false;
+    }
+
+    this.currentSlide = slide;
+
+    // every time you change slides, reset the timer
+    this.restartTimer();
+  }
+
+  private getSlideByIndex(index: number) {
+    let len = this.slides.length;
+    for (let i = 0; i < len; ++i) {
+      if (this.slides[i].index === index) {
+        return this.slides[i];
+      }
+    }
+  }
+
+  private getCurrentIndex() {
+    return !this.currentSlide ? 0 : this.currentSlide.index;
+  }
+
+  public next() {
+    let newIndex = (this.getCurrentIndex() + 1) % this.slides.length;
+
+    if (newIndex === 0 && this.noWrap) {
+      this.pause();
+      return;
+    }
+
+    return this.select(this.getSlideByIndex(newIndex), Direction.NEXT);
+  }
+
+  public prev() {
+    let newIndex =
+      this.getCurrentIndex() - 1 < 0
+        ? this.slides.length - 1
+        : this.getCurrentIndex() - 1;
+
+    if (this.noWrap && newIndex === this.slides.length - 1) {
+      this.pause();
+      return;
+    }
+
+    return this.select(this.getSlideByIndex(newIndex), Direction.PREV);
+  }
+
+  private restartTimer() {
+    this.resetTimer();
+    let interval = +this._interval;
+    if (!isNaN(interval) && interval > 0) {
+      this.currentInterval = setInterval(() => {
+        let nInterval = +this._interval;
+        if (
+          this.isPlaying &&
+          !isNaN(this._interval) &&
+          nInterval > 0 &&
+          this.slides.length
+        ) {
+          this.next();
+        } else {
+          this.pause();
+        }
+      }, interval);
+    }
+  }
+
+  private resetTimer() {
+    if (this.currentInterval) {
+      clearInterval(this.currentInterval);
+      this.currentInterval = null;
+    }
+  }
+}

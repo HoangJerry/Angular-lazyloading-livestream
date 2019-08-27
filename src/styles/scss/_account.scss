@@ -1,0 +1,90 @@
+$account-title-font-size: 30px;
+$account-title-margin: 64px;
+$account-title-margin-tablet: 48px;
+$account-title-margin-mobile: 36px;
+
+$account-menu-font-size: 18px;
+
+$address-color: #626466;
+
+$account-username-margin: 20px;
+
+.account-title {
+  font-size: $account-title-font-size;
+  margin-top: $account-title-margin;
+  margin-bottom: $account-title-margin;
+  color: $main-color;
+  font-weight: 700;
+}
+
+.account-menu {
+  li {
+    a {
+      font-size: $account-menu-font-size;
+      color: $grey;
+
+      &:hover {
+        color: $corco-mid-purple;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      display: inline-block !important;
+    }
+  }
+}
+
+.address {
+  color: $address-color;
+}
+
+.account-username {
+  margin-right: $account-username-margin;
+}
+
+.change-password-form {
+  label {
+    color: $warm-grey;
+  }
+
+  p {
+    color: $main-color;
+  }
+}
+
+.donation-info {
+  .svod-btn {
+    margin-bottom: 13px;
+
+    i {
+      margin-right: 13px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .account-title {
+    margin-top: $account-title-margin-tablet;
+    margin-bottom: $account-title-margin-tablet;
+  }
+
+  .account-menu {
+    margin-top: $account-title-margin-tablet;
+  }
+
+  .account-username {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .account-title {
+    margin-top: $account-title-margin-mobile;
+    margin-bottom: 0;
+  }
+
+  .account-menu {
+    margin-top: $account-title-margin-mobile;
+    margin-bottom: $account-title-margin-mobile;
+  }
+}

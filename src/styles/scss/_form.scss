@@ -1,0 +1,326 @@
+/* Form Buttons */
+$form-button-font-size: 16px;
+$form-button-color: $corco-lightest-purple;
+$form-button-background: $corco-dark-purple;
+$form-button-border-radius: 3px;
+$form-button-margin-top: 24px;
+$form-button-margin-bottom: 30px;
+$form-svod-btn-margin-bottom: 16px;
+$form-group-button-margin: -35px 0 0 5px;
+/* Form Links */
+$form-link-font-size: 14px;
+/* Form label */
+$form-label-font-size: 14px;
+$form-label-span-font-size: 10px;
+/* Form Paragraph */
+$form-paragraph-color: $corco-dark-purple;
+$form-paragraph-margin-bottom: 29px;
+/* Form Input */
+$form-input-color: $corco-dark-purple;
+$form-input-height: 48px;
+$form-input-font-size: 16px;
+$form-input-background: rgba(255, 255, 255, 0.3);
+$form-input-border-radius: 3px;
+$form-input-border: 1px solid $warm-grey;
+$form-input-padding: 14px 16px;
+$form-input-margin: 0 0 24px 0;
+$form-input-validated-icon-font-size: 24px;
+$form-input-validated-icon-margin-right: 16px;
+$form-input-validated-icon-margin-top: -60px;
+$form-input-error-background-color: rgba(205, 82, 82, 0.3);
+$form-input-error-color: $alert-color;
+$form-input-error-border: 1px solid $form-input-error-color;
+$form-input-success-background-color: rgba(91, 147, 26, 0.3);
+$form-input-success-color: $success-color;
+$form-input-success-border: 1px solid $form-input-success-color;
+/* Form Box */
+$form-box-border: 1px solid rgba(155,154,155,0.44);
+$form-box-border-radius: 3px;
+$form-box-padding: 1.25rem;
+/* Form Error */
+$form-error-background: #FFD5D5;
+$form-error-border: 1px solid rgba(208,1,27,0.64);
+$form-error-border-radius: 3px;
+$form-error-font-size: 0.875rem;
+$form-error-font-color: #D0011B;
+$form-error-margin-bottom: 0.75rem;
+$form-error-line-height: 2.5rem;
+$form-error-padding: 0 1.25rem;
+
+/* Form checkbox */
+$form-checkbox-font-size: 22px;
+$form-checkbox-unselected-color: #52505B;
+$form-checkbox-margin-right: 16px;
+
+/* checkbox group */
+$checkbox-group-input-size: 24px;
+$checkbox-group-input-margin: 10px 16px 0 0;
+$checkbox-group-label-size: calc(100% - 40px);
+
+/* input group */
+$input-group-label-background: rgba(255, 255, 255, 0.7);
+$input-group-label-padding: 0 17px;
+$input-group-label-font-size: 28px;
+
+/* help text */
+$svod-help-text-font-size: 10px;
+$svod-help-text-font-color-error: $alert-color;
+$svod-help-text-font-color-success: $fifth-color;
+$svod-help-text-padding-left: 25px;
+$svod-help-text-margin-top: -15px;
+$svod-help-text-margin-bottom: 15px;
+
+.form-submit-button {
+  font-size: $form-button-font-size;
+  letter-spacing: 0.16px;
+  margin: 0;
+  margin-top: $form-button-margin-top;
+  margin-bottom: $form-button-margin-bottom;
+
+  &.group-button {
+    margin: $form-group-button-margin;
+    height: $form-input-height;
+  }
+
+  &.half-size {
+    width: 49%;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+}
+
+.button-cancel {
+  opacity: 0.3;
+}
+
+.svod-form {
+  p {
+    color: $form-paragraph-color;
+    font-size: $form-link-font-size;
+    margin-bottom: $form-paragraph-margin-bottom;
+  }
+
+  a {
+    font-size: $form-link-font-size;
+  }
+
+  label {
+    font-size: $form-label-font-size;
+    font-weight: 300;
+    text-align: left;
+    color: $corco-mid-purple;
+
+    span {
+      font-size: $form-label-span-font-size;
+    }
+  }
+
+  .form-select {
+    border-radius: $form-input-border-radius;
+    font-size: $form-input-font-size;
+    color: $form-input-color;
+    height: $form-input-height;
+
+    &.error {
+      border: $form-input-error-border;
+    }
+
+    &.success {
+      border: $form-input-success-border;
+    }
+  }
+
+  .form-text {
+    background-color: $form-input-background;
+    border-radius: $form-input-border-radius;
+    font-size: $form-input-font-size;
+    color: $form-input-color !important;
+    height: $form-input-height;
+    border: $form-input-border;
+    padding: $form-input-padding;
+    margin: $form-input-margin;
+    letter-spacing: 0;
+
+    &.form-text-gray {
+      color: $grey !important;
+    }
+
+    &.error {
+      background-color: $form-input-error-background-color;
+      border: $form-input-error-border;
+    }
+
+    &.success {
+      background-color: $form-input-success-background-color;
+      border: $form-input-success-border;
+    }
+
+    option {
+      color: $warm-grey;
+    }
+  }
+
+  input::-webkit-input-placeholder {
+      color: $warm-grey !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-font-smoothing: antialiased;
+      -o-font-smoothing: antialiased;
+  }
+
+  input:-ms-input-placeholder {
+      color: $warm-grey !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-font-smoothing: antialiased;
+      -o-font-smoothing: antialiased;
+  }
+
+  input::-moz-placeholder {
+      color: $warm-grey !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-font-smoothing: antialiased;
+      -o-font-smoothing: antialiased;
+  }
+
+  .form-box {
+    background: $fifth-color;
+    border: $form-box-border;
+    border-radius: $form-box-border-radius;
+    padding: $form-box-padding;
+    margin: $form-input-margin;
+  }
+
+  .svod-form-error {
+    background: $form-error-background;
+    border: $form-error-border;
+    border-radius: $form-error-border-radius;
+    color: $form-error-font-color;
+    margin: $form-input-margin;
+    position: relative;
+    overflow: hidden;
+
+    i {
+      font-size: $form-input-validated-icon-font-size;
+      position: absolute;
+      z-index: 2;
+      color: $form-input-error-color;
+      right: $form-input-validated-icon-margin-right;
+      top: 40%;
+      display: block;
+    }
+
+    span {
+      display: block;
+      letter-spacing: 0;
+      font-size: $form-input-font-size;
+      padding: $form-input-padding;
+    }
+  }
+
+  .svod-help-text {
+    text-align: right;
+    font-size: $svod-help-text-font-size;
+    font-weight: 500;
+    line-height: 2.0;
+    padding-left: $svod-help-text-padding-left;
+    margin-top: $svod-help-text-margin-top;
+    margin-bottom: $svod-help-text-margin-bottom;
+    float: right;
+
+    &.error {
+      background: transparent url("./styles/images/error.svg") left center no-repeat;
+      color: $svod-help-text-font-color-error;
+    }
+
+    &.success {
+      background: transparent url("./styles/images/success.svg") left center no-repeat;
+      color: $svod-help-text-font-color-success;
+    }
+  }
+
+  .text-error {
+    color: $form-error-font-color;
+  }
+
+  .form-field-explain {
+    color: $form-input-color;
+    float: right;
+    position: relative;
+    z-index: 2;
+    margin-right: $form-input-validated-icon-margin-right;
+    margin-top: $form-input-validated-icon-margin-top;
+  }
+
+  .svod-btn {
+    margin-bottom: $form-svod-btn-margin-bottom;
+  }
+
+  .input-group {
+    .input-group-label {
+      color: $off-white;
+      background: $input-group-label-background;
+      padding: $input-group-label-padding;
+      font-size: $input-group-label-font-size;
+      border-radius: 3px 0px 0px 3px;
+    }
+
+    .form-text {
+      margin: 0;
+      border-left: none;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  .input-digits {
+    .form-text {
+      width: 15%;
+      display: inline-block;
+      padding: 8px;
+      margin-left: 5%;
+      text-align: center;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.svod-checkbox {
+  cursor: pointer;
+  font-size: $form-checkbox-font-size;
+  line-height: $form-checkbox-font-size;
+  display: inline-block;
+  margin-right: $form-checkbox-margin-right;
+
+  .fa {
+    display: none;
+  }
+
+  .fa-square {
+    color: $form-checkbox-unselected-color;
+  }
+
+  .fa-check-square {
+    color: $light-orange;
+  }
+
+  .active {
+    display: inline-block;
+  }
+}
+
+.checkbox-group {
+  input {
+    width: $checkbox-group-input-size;
+    height: $checkbox-group-input-size;
+    float: left;
+    margin: $checkbox-group-input-margin;
+  }
+
+  label {
+    width: $checkbox-group-label-size;
+    float: left;
+    margin: 0;
+  }
+}

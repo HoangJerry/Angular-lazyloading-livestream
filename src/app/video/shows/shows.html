@@ -1,0 +1,56 @@
+<div class="svod-content video-content-padding-top">
+  <div class="video-list" *ngIf="all == null || all == 'featuredTVShows'">
+    <div class="row">
+      <div class="small-12 columns">
+        <h3>Most Popular Shows</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <div *ngFor="let video of featuredTVShows; let i = index; let last = last" [class.end]="last" class="video-item responsive-video-item hoverable two-row-item" [class.item-show]="all == 'featuredTVShows'" (click)="gotoShow(video.TvShowID)">
+          <img [src]="video.thumbnailLink">
+          <div class="hover-item">
+            <h3>{{ video.showTitle }}</h3>
+            <div class="play-button"></div>
+            <p><span>{{ video.genre }}</span> <span></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="showViewAll(featuredTVShows?.length) && all == null">
+      <div class="small-12 column text-right">
+        <button class="svod-btn-view-all" (click)="viewAll('featuredTVShows')">
+          <span>View all</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngFor="let genre of genreTVShows">
+    <div class="video-list" *ngIf="genre.total && (all == null || all == genre.genre)">
+      <div class="row">
+        <div class="small-12 columns">
+          <h3>TV Show: {{ genre.genre }}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          <div *ngFor="let video of genre.tvshows; let i = index; let last = last" [class.end]="last" class="video-item responsive-video-item hoverable two-row-item" [class.item-show]="all == genre.genre" (click)="gotoShow(video.TvShowID)">
+            <img [src]="video.thumbnailLink">
+            <div class="hover-item">
+              <h3>{{ video.showTitle }}</h3>
+              <div class="play-button"></div>
+              <p><span>{{ video.genre }}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="showViewAll(genre.tvshows.length) && all == null">
+        <div class="small-12 column text-right">
+          <button class="svod-btn-view-all" (click)="viewAll(genre.genre)">
+            <span>View all</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

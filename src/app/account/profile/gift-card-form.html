@@ -1,0 +1,59 @@
+<div class="reveal-overlay show" *ngIf="showGiftcardForm">
+  <div class="reveal show">
+    <div class="row">
+      <div class="small-12 large-10 large-push-1 column">
+        <h3 class="text-center">Buy Now</h3>
+        <p class="text-center">Please enter the name and email of the person you wish to send it to.</p>
+        <form [formGroup]="giftcardForm" (submit)="onSubmit()" class="giftcard-form svod-form">
+          <div class="row">
+            <div class="small-6 columns">
+              <input type="text" placeholder="First Name" class="form-text" formControlName="firstName" [class.error]="formErrors.firstName" required>
+              <p class="svod-help-text error" *ngIf="formErrors.firstName">{{formErrors.firstName}}</p>
+            </div>
+            <div class="small-6 columns">
+              <input type="text" placeholder="Last Name" class="form-text" formControlName="lastName" [class.error]="formErrors.lastName" required>
+              <p class="svod-help-text error" *ngIf="formErrors.lastName">{{formErrors.lastName}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 column">
+              <input type="email" placeholder="Email" class="form-text" formControlName="email" [class.error]="formErrors.email" required mcvodValidateEmail>
+              <p class="svod-help-text error" *ngIf="formErrors.email">{{formErrors.email}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 column">
+              <textarea placeholder="Your Message..." formControlName="message" [class.error]="formErrors.message" required rows="5"></textarea>
+              <p class="svod-help-text error" *ngIf="formErrors.message">{{formErrors.message}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 column">
+              <p>
+                <input type="checkbox" id="sendEmail" formControlName="sendEmail" [class.error]="formErrors.sendEmail">
+                <label for="sendEmail">Send a copy to my email on this account</label>
+
+              </p>
+              <p class="svod-help-text error" *ngIf="formErrors.sendEmail">{{formErrors.sendEmail}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 column">
+              <button type="submit" class="secondary button expanded form-submit-button text-uppercase">Buy Gift</button>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+            <div class="small-12 column">
+              <p>Credit Purchase Terms Of Service (Overview): Gift cards and/or Pre-paid Credits may be used for any movie or TV show at {{ baseURL }}. They are non-refundable, non-transferable and cannot be redeemed for cash. Gift cards cannot be purchased with existing {{ appName }} account credit. Gift card amounts are not divisible between multiple accounts. (<a (click)="openTermsOfUse()" class="underline">See full terms of service</a>)</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <button class="close-button" type="button" (click)="closeGiftcardForm()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>

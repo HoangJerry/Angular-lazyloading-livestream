@@ -31,7 +31,7 @@
     "core-js": "^2.5.4",
     "feather-icons": "^4.21.0",
     "foundation-sites": "^6.5.3",
-    "jquery": "^3.4.0",
+    "jquery": "^3.5.0",
     "ngx-modal": "0.0.29",
     "ngx-toastr": "^10.0.4",
     "rxjs": "~6.3.3",
